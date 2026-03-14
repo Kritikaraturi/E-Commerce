@@ -23,9 +23,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-^(vhs8)y(9w+j2s6#@xjj!&nuwnyp5v*jg!krnb8n@me&h#jf7'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['kritikaraturi.pythonanywhere.com']
+
+STATIC_URL = '/static/'
+STATIC_ROOT = '/home/kritikaraturi/E-Commerce/staticfiles'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = '/home/kritikaraturi/E-Commerce/media'
 
 
 # Application definition
