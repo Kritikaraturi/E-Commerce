@@ -1,0 +1,33 @@
+{% extends "ecom_app/base.html" %}
+{% load static %}
+
+{% block title %}Customer Registration{% endblock %}
+
+{% block content %}
+
+<div class = "row my-3"  style = "height:800px;">
+    <div class="col-sm-6 offset-sm-3  mt-4"  style = "height:700px;">
+        <h1 class = "text-center">Customer Registration</h1>
+        <hr>
+        <form action = "" method = "post" nonvalidate class = "shadow p-5">
+        {% if messages %}
+            {% for message in messages %}
+                <p {% if message.tags %} class = "alert alert-{{message.tags}} mb-5" {% endif %}>{{message}}</p>
+            {% endfor %}
+        {% endif %}
+        {% csrf_token %}
+            {% for fm in form %}
+                <div class = "form-group mb-4">
+                    {{fm.label_tag}}{{fm}}<small class = "text-danger">{{fm.errors|striptags}}</small>
+                </div>
+            {% endfor %}
+            <div class = "text-center">
+                <input type = "submit" value = "Submit" class = "btn btn-primary">
+            </div>
+            <br><br>
+            <div class = "text-center text-primary fw-bold">Existing User?<a href = "{% url 'login' %}" class = "text-danger">Login Now</a></div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

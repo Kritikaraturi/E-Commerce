@@ -1,0 +1,173 @@
+{% extends "ecom_app/base.html" %}
+{% load static %}
+
+{% block title %}Beauty & Personal Care | MyShop{% endblock %}
+
+{% block content %}
+
+<div class="container my-5">
+
+    <!-- ===== PAGE HEADER ===== -->
+    <div class="text-center mb-4">
+        <h2 class="fw-bold">Beauty & Personal Care</h2>
+        <p class="text-muted">Enhance your natural beauty with premium products</p>
+    </div>
+
+    <div class="row">
+
+        <!-- ===== SIDEBAR FILTER ===== -->
+        {% comment %} <div class="col-md-3 mb-4">
+            <div class="card shadow-sm p-3">
+                <h5>Filter By</h5>
+                <hr>
+
+                <h6>Category</h6>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox">
+                    <label class="form-check-label">Skincare</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox">
+                    <label class="form-check-label">Haircare</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox">
+                    <label class="form-check-label">Makeup</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox">
+                    <label class="form-check-label">Fragrances</label>
+                </div>
+
+                <hr>
+
+                <h6>Price Range</h6>
+                <input type="range" class="form-range">
+                <p class="small text-muted">Up to ₹5,000</p>
+
+                <button class="btn btn-pink w-100 mt-3" style="background-color:#e83e8c; color:white;">
+                    Apply
+                </button>
+            </div>
+        </div> {% endcomment %}
+
+        <!-- ===== PRODUCT GRID ===== -->
+        <div>
+            <div class="row g-4">
+
+                <!-- Product 1 -->
+                <div class="col-md-4 col-sm-6">
+                    <div class="card h-100 shadow-sm">
+                        <img src="{% static 'main/category/beauty/cream.webp' %}"
+                             class="card-img-top"
+                             style="height:280px; object-fit:cover;"
+                             alt="Face Cream">
+                        <div class="card-body text-center mb-3">
+                            <h6 class="card-title">Hydrating Face Cream</h6>
+                            <p class="fw-bold text-success">₹799</p>
+                            <a href="{% url 'product_detail' 40 %}" class="btn btn-sm"
+                               style="background-color:#e83e8c; color:white;">
+                               View Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="col-md-4 col-sm-6">
+                    <div class="card h-100 shadow-sm">
+                        <img src="{% static 'main/category/beauty/shampoo.webp' %}"
+                             class="card-img-top"
+                             style="height:280px; object-fit:cover;"
+                             alt="Shampoo">
+                        <div class="card-body text-center mb-3">
+                            <h6 class="card-title">Herbal Shampoo</h6>
+                            <p class="fw-bold text-success">₹499</p>
+                            <a href="{% url 'product_detail' 41 %}" class="btn btn-sm"
+                               style="background-color:#e83e8c; color:white;">
+                               View Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="col-md-4 col-sm-6">
+                    <div class="card h-100 shadow-sm">
+                        <img src="{% static 'main/category/beauty/lipstick.webp' %}"
+                             class="card-img-top"
+                             style="height:280px; object-fit:cover;"
+                             alt="Lipstick">
+                        <div class="card-body text-center mb-3">
+                            <h6 class="card-title">Matte Lipstick</h6>
+                            <p class="fw-bold text-success">₹699</p>
+                            <a href="{% url 'product_detail' 42 %}" class="btn btn-sm"
+                               style="background-color:#e83e8c; color:white;">
+                               View Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="col-md-4 col-sm-6">
+                    <div class="card h-100 shadow-sm">
+                        <img src="{% static 'main/category/beauty/perfume.webp' %}"
+                             class="card-img-top"
+                             style="height:280px; object-fit:cover;"
+                             alt="Perfume">
+                        <div class="card-body text-center mb-3">
+                            <h6 class="card-title">Luxury Perfume</h6>
+                            <p class="fw-bold text-success">₹2,499</p>
+                            <a href="{% url 'product_detail' 43 %}" class="btn btn-sm"
+                               style="background-color:#e83e8c; color:white;">
+                               View Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 5 -->
+                <div class="col-md-4 col-sm-6">
+                    <div class="card h-100 shadow-sm">
+                        <img src="{% static 'main/category/beauty/facewash.webp' %}"
+                             class="card-img-top"
+                             style="height:280px; object-fit:cover;"
+                             alt="Face Wash">
+                        <div class="card-body text-center mb-3">
+                            <h6 class="card-title">Gentle Face Wash</h6>
+                            <p class="fw-bold text-success">₹349</p>
+                            <a href="{% url 'product_detail' 44 %}" class="btn btn-sm"
+                               style="background-color:#e83e8c; color:white;">
+                               View Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 6 -->
+                <div class="col-md-4 col-sm-6">
+                    <div class="card h-100 shadow-sm">
+                        <img src="{% static 'main/category/beauty/oil.webp' %}"
+                             class="card-img-top"
+                             style="height:280px; object-fit:cover;"
+                             alt="Hair Oil">
+                        <div class="card-body text-center mb-3">
+                            <h6 class="card-title">Natural Hair Oil</h6>
+                            <p class="fw-bold text-success">₹599</p>
+                            <a href="{% url 'product_detail' 45 %}" class="btn btn-sm"
+                               style="background-color:#e83e8c; color:white;">
+                               View Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,149 @@
+{% extends "ecom_app/base.html" %}
+{% load static %}
+
+{% block title %}Electronics | MyShop{% endblock %}
+
+{% block content %}
+
+<div class="container my-5">
+
+    <!-- ================= PAGE HEADER ================= -->
+    <div class="text-center mb-4">
+        <h2 class="fw-bold">Electronics</h2>
+        <p class="text-muted">Discover the latest gadgets and electronic devices</p>
+    </div>
+
+    <div class="row">
+
+        <!-- ================= SIDEBAR FILTER ================= -->
+        {% comment %} <div class="col-md-3 mb-4">
+            <div class="card shadow-sm p-3">
+                <h5>Filter By</h5>
+                <hr>
+
+                <h6>Sub Categories</h6>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox">
+                    <label class="form-check-label">Mobiles</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox">
+                    <label class="form-check-label">Laptops</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox">
+                    <label class="form-check-label">Headphones</label>
+                </div>
+
+                <hr>
+
+                <h6>Price Range</h6>
+                <input type="range" class="form-range">
+                <p class="small text-muted">Up to ₹50,000</p>
+
+                <button class="btn btn-primary w-100 mt-3">Apply</button>
+            </div>
+        </div> {% endcomment %}
+
+        <!-- ================= PRODUCT GRID ================= -->
+        <div>
+            <div class="row g-4">
+
+                <!-- Product Card -->
+                <div class="col-md-4 col-sm-6">
+                    <div class="card h-100 shadow-sm">
+                        <img src="{% static 'main/category/electronics/smartphone.webp' %}"
+                             class="card-img-top"
+                             style="height:280px; object-fit:cover; width:100%; "
+                             alt="Mobile">
+                        <div class="card-body text-center mb-3">
+                            <h6 class="card-title">Samsung Smartphone</h6>
+                            <p class="fw-bold text-success">₹24,999</p>
+                            <a href="{% url 'product_detail' 16 %}" class="btn btn-sm btn-primary">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Card -->
+                <div class="col-md-4 col-sm-6">
+                    <div class="card h-100 shadow-sm">
+                        <img src="{% static 'main/category/electronics/laptop.jpg' %}"
+                             class="card-img-top"
+                             style="height:280px; object-fit:cover;  width:100%;"
+                             alt="Laptop">
+                        <div class="card-body text-center mb-3">
+                            <h6 class="card-title">Gaming Laptop</h6>
+                            <p class="fw-bold text-success">₹59,999</p>
+                            <a href="{% url 'product_detail' 17 %}" class="btn btn-sm btn-primary">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Card -->
+                <div class="col-md-4 col-sm-6">
+                    <div class="card h-100 shadow-sm">
+                        <img src="{% static 'main/category/electronics/headphone.jpg' %}"
+                             class="card-img-top"
+                             style="height:280px; object-fit:cover; width:100%;"
+                             alt="Headphones">
+                        <div class="card-body text-center mb-3">
+                            <h6 class="card-title">Wireless Headphones</h6>
+                            <p class="fw-bold text-success">₹2,499</p>
+                            <a href="{% url 'product_detail' 18 %}" class="btn btn-sm btn-primary">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Card -->
+                <div class="col-md-4 col-sm-6">
+                    <div class="card h-100 shadow-sm">
+                        <img src="{% static 'main/category/electronics/watch.avif' %}"
+                             class="card-img-top"
+                             style="height:280px; object-fit:cover;"
+                             alt="Smart Watch">
+                        <div class="card-body text-center mb-3">
+                            <h6 class="card-title">Smart Watch</h6>
+                            <p class="fw-bold text-success">₹1,999</p>
+                            <a href="{% url 'product_detail' 19 %}" class="btn btn-sm btn-primary">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Card -->
+                <div class="col-md-4 col-sm-6">
+                    <div class="card h-100 shadow-sm">
+                        <img src="{% static 'main/category/electronics/speakers.webp' %}"
+                             class="card-img-top"
+                             style="height:280px; object-fit:cover;"
+                             alt="Bluetooth Speaker">
+                        <div class="card-body text-center mb-3">
+                            <h6 class="card-title">Bluetooth Speaker</h6>
+                            <p class="fw-bold text-success">₹1,499</p>
+                            <a href="{% url 'product_detail' 20 %}" class="btn btn-sm btn-primary">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Card -->
+                <div class="col-md-4 col-sm-6">
+                    <div class="card h-100 shadow-sm">
+                        <img src="{% static 'main/category/electronics/tab.avif' %}"
+                             class="card-img-top"
+                             style="height:280px; object-fit:cover;"
+                             alt="Tablet">
+                        <div class="card-body text-center mb-3">
+                            <h6 class="card-title">Tablet Pro</h6>
+                            <p class="fw-bold text-success">₹18,999</p>
+                            <a href="{% url 'product_detail' 21 %}" class="btn btn-sm btn-primary">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

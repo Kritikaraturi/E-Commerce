@@ -1,0 +1,166 @@
+{% extends "ecom_app/base.html" %}
+{% load static %}
+
+{% block title %}Gaming | MyShop{% endblock %}
+
+{% block content %}
+
+<div class="container my-5">
+
+    <!-- ===== PAGE HEADER ===== -->
+    <div class="text-center mb-4">
+        <h2 class="fw-bold">Indoor & Outdoor Gaming</h2>
+        <p class="text-muted">Explore the best gaming products for fun inside and outside</p>
+    </div>
+
+    {% comment %} 
+    <div class="row">
+
+        <!-- ===== SIDEBAR FILTER ===== -->
+        <div class="col-md-3 mb-4">
+            <div class="card shadow-sm p-3">
+                <h5>Filter By</h5>
+                <hr>
+
+                <h6>Game Type</h6>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox">
+                    <label class="form-check-label">Indoor Games</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox">
+                    <label class="form-check-label">Outdoor Games</label>
+                </div>
+
+                <hr>
+
+                <h6>Category</h6>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox">
+                    <label class="form-check-label">Cricket</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox">
+                    <label class="form-check-label">Football</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox">
+                    <label class="form-check-label">Chess</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox">
+                    <label class="form-check-label">Carrom</label>
+                </div>
+
+                <hr>
+
+                <h6>Price Range</h6>
+                <input type="range" class="form-range">
+                <p class="small text-muted">Up to ₹15,000</p>
+
+                <button class="btn btn-primary w-100 mt-3">Apply</button>
+            </div>
+        </div> {% endcomment %}
+
+        <!-- ===== PRODUCT GRID ===== -->
+        <div>
+            <div class="row g-4">
+
+                <!-- Outdoor Product -->
+                <div class="col-md-4 col-sm-6">
+                    <div class="card h-100 shadow-sm">
+                        <img src="{% static 'main/category/game/cricket.jpg' %}"
+                             class="card-img-top"
+                             style="height:280px; object-fit:cover;"
+                             alt="Cricket Kit">
+                        <div class="card-body text-center mb-3">
+                            <h6 class="card-title">Complete Cricket Kit</h6>
+                            <p class="fw-bold text-success">₹4,999</p>
+                            <a href="{% url 'product_detail' 22 %}" class="btn btn-sm btn-primary">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Outdoor Product -->
+                <div class="col-md-4 col-sm-6">
+                    <div class="card h-100 shadow-sm">
+                        <img src="{% static 'main/category/game/football.avif' %}"
+                             class="card-img-top"
+                             style="height:280px; object-fit:cover;"
+                             alt="Football">
+                        <div class="card-body text-center mb-3">
+                            <h6 class="card-title">Professional Football</h6>
+                            <p class="fw-bold text-success">₹1,299</p>
+                            <a href="{% url 'product_detail' 23 %}" class="btn btn-sm btn-primary">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Indoor Product -->
+                <div class="col-md-4 col-sm-6">
+                    <div class="card h-100 shadow-sm">
+                        <img src="{% static 'main/category/game/chess.jpg' %}"
+                             class="card-img-top"
+                             style="height:280px; object-fit:cover;"
+                             alt="Chess Board">
+                        <div class="card-body text-center mb-3">
+                            <h6 class="card-title">Wooden Chess Board</h6>
+                            <p class="fw-bold text-success">₹899</p>
+                            <a href="{% url 'product_detail' 24 %}" class="btn btn-sm btn-primary">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Indoor Product -->
+                <div class="col-md-4 col-sm-6">
+                    <div class="card h-100 shadow-sm">
+                        <img src="{% static 'main/category/game/carrom.jpg' %}"
+                             class="card-img-top"
+                             style="height:280px; object-fit:cover;"
+                             alt="Carrom Board">
+                        <div class="card-body text-center mb-3">
+                            <h6 class="card-title">Premium Carrom Board</h6>
+                            <p class="fw-bold text-success">₹2,499</p>
+                            <a href="{% url 'product_detail' 25 %}" class="btn btn-sm btn-primary">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Outdoor Product -->
+                <div class="col-md-4 col-sm-6">
+                    <div class="card h-100 shadow-sm">
+                        <img src="{% static 'main/category/game/bad.jpg' %}"
+                             class="card-img-top"
+                             style="height:280px; object-fit:cover;"
+                             alt="Badminton Racket">
+                        <div class="card-body text-center mb-3">
+                            <h6 class="card-title">Badminton Racket Set</h6>
+                            <p class="fw-bold text-success">₹1,799</p>
+                            <a href="{% url 'product_detail' 26 %}" class="btn btn-sm btn-primary">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Indoor Product -->
+                <div class="col-md-4 col-sm-6">
+                    <div class="card h-100 shadow-sm">
+                        <img src="{% static 'main/category/game/tt.avif' %}"
+                             class="card-img-top"
+                             style="height:280px; object-fit:cover;"
+                             alt="Table Tennis">
+                        <div class="card-body text-center mb-3">
+                            <h6 class="card-title">Table Tennis Set</h6>
+                            <p class="fw-bold text-success">₹1,499</p>
+                            <a href="{% url 'product_detail' 27 %}" class="btn btn-sm btn-primary">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

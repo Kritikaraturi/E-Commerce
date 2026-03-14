@@ -1,0 +1,199 @@
+{% extends "ecom_app/base.html" %}
+{% load static %}
+
+{% block title %}Products | MyShop{% endblock %}
+
+{% block content %}
+
+<div class="container my-5">
+
+    <!-- ================= PAGE HEADER ================= -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>All Products</h2>
+
+        <!-- Sort Dropdown -->
+        <select class="form-select w-auto">
+            <option selected>Sort By</option>
+            <option>Price: Low to High</option>
+            <option>Price: High to Low</option>
+            <option>Newest</option>
+        </select>
+    </div>
+
+
+    <div class="row">
+
+        <!-- ================= SIDEBAR FILTER ================= -->
+        <div class="col-md-3 mb-4">
+            <div class="card shadow-sm p-3">
+                <h5>Filters</h5>
+                <hr>
+
+                <h6>Categories</h6>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox">
+                    <label class="form-check-label">Electronics</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox">
+                    <label class="form-check-label">Fashion</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox">
+                    <label class="form-check-label">Home Appliances</label>
+                </div>
+
+                <hr>
+
+                <h6>Price Range</h6>
+                <input type="range" class="form-range">
+                <p class="small text-muted">Up to ₹5000</p>
+
+                <button class="btn btn-primary w-100 mt-3">Apply Filters</button>
+            </div>
+        </div>
+
+
+        <!-- ================= PRODUCT GRID ================= -->
+        <div class="col-md-9">
+            <div class="row g-4">
+
+                <!-- Product Card -->
+                <div class="col-md-4 col-sm-6">
+                    <div class="card h-100 shadow-sm">
+                        <img src="{% static 'main/products/headphone.webp' %}"
+                             class="card-img-top"
+                             style="height:280px; object-fit:cover;"
+                             alt="Product">
+                        <div class="card-body text-center">
+                            <h6 class="card-title">Wireless Headphones</h6>
+                            <p class="fw-bold text-success">₹2,499</p>
+                            <a href="{% url 'product_detail' 1 %}" class="btn btn-sm btn-primary">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Card -->
+                <div class="col-md-4 col-sm-6">
+                    <div class="card h-100 shadow-sm">
+                        <img src="{% static 'main/products/watch.jpg' %}"
+                             class="card-img-top"
+                             style="height:280px; object-fit:cover;"
+                             alt="Product">
+                        <div class="card-body text-center">
+                            <h6 class="card-title">Smart Watch</h6>
+                            <p class="fw-bold text-success">₹1,999</p>
+                            <a href="{% url 'product_detail' 2 %}" class="btn btn-sm btn-primary ">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Card -->
+                <div class="col-md-4 col-sm-6">
+                    <div class="card h-100 shadow-sm">
+                        <img src="{% static 'main/products/jacket.jpg' %}"
+                             class="card-img-top"
+                             style="height:280px; object-fit:cover;"
+                             alt="Product">
+                        <div class="card-body text-center">
+                            <h6 class="card-title">Men's Jacket</h6>
+                            <p class="fw-bold text-success">₹3,299</p>
+                            <a href="{% url 'product_detail' 3 %}" class="btn btn-sm btn-primary">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Card -->
+                <div class="col-md-4 col-sm-6">
+                    <div class="card h-100 shadow-sm">
+                        <img src="{% static 'main/products/bluetooth.webp' %}"
+                             class="card-img-top"
+                             style="height:280px; object-fit:cover;"
+                             alt="Product">
+                        <div class="card-body text-center">
+                            <h6 class="card-title">Bluetooth Speaker</h6>
+                            <p class="fw-bold text-success">₹1,499</p>
+                            <a href="{% url 'product_detail' 4 %}" class="btn btn-sm btn-primary">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-sm-6">
+                    <div class="card h-100 shadow-sm">
+                        <img src="{% static 'main/products/kettle.webp' %}"
+                             class="card-img-top"
+                             style="height:280px; object-fit:cover;"
+                             alt="Product">
+                        <div class="card-body text-center">
+                            <h6 class="card-title">Electric Kettle</h6>
+                            <p class="fw-bold text-success">₹3,400</p>
+                            <a href="{% url 'product_detail' 5 %}" class="btn btn-sm btn-primary">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-sm-6">
+                    <div class="card h-100 shadow-sm">
+                        <img src="{% static 'main/products/lg.webp' %}"
+                             class="card-img-top"
+                             style="height:280px; object-fit:cover;"
+                             alt="Product">
+                        <div class="card-body text-center">
+                            <h6 class="card-title">LG Refrigerator</h6>
+                            <p class="fw-bold text-success">₹23,000</p>
+                            <a href="{% url 'product_detail' 6 %}" class="btn btn-sm btn-primary">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-sm-6">
+                    <div class="card h-100 shadow-sm">
+                        <img src="{% static 'main/products/jeans.jpg' %}"
+                             class="card-img-top"
+                             style="height:280px; object-fit:cover;"
+                             alt="Product">
+                        <div class="card-body text-center">
+                            <h6 class="card-title">Men's Jeans</h6>
+                            <p class="fw-bold text-success">₹999</p>
+                            <a href="{% url 'product_detail' 7 %}" class="btn btn-sm btn-primary">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-sm-6">
+                    <div class="card h-100 shadow-sm">
+                        <img src="{% static 'main/products/shoes.jpg' %}"
+                             class="card-img-top"
+                             style="height:280px; object-fit:cover;"
+                             alt="Product">
+                        <div class="card-body text-center">
+                            <h6 class="card-title">Formal Shoes</h6>
+                            <p class="fw-bold text-success">₹1,799</p>
+                            <a href="{% url 'product_detail' 8 %}" class="btn btn-sm btn-primary">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-sm-6">
+                    <div class="card h-100 shadow-sm">
+                        <img src="{% static 'main/products/vaccum.webp' %}"
+                             class="card-img-top"
+                             style="height:280px; object-fit:cover;"
+                             alt="Product">
+                        <div class="card-body text-center">
+                            <h6 class="card-title">Vaccum Cleaner</h6>
+                            <p class="fw-bold text-success">₹1,299</p>
+                            <a href="{% url 'product_detail' 9 %}" class="btn btn-sm btn-primary">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

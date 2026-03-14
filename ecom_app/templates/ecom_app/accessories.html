@@ -1,0 +1,153 @@
+{% extends "ecom_app/base.html" %}
+{% load static %}
+
+{% block title %}Accessories | MyShop{% endblock %}
+
+{% block content %}
+
+<div class="container my-5">
+
+    <!-- ===== PAGE HEADER ===== -->
+    <div class="text-center mb-4">
+        <h2 class="fw-bold">Accessories Collection</h2>
+        <p class="text-muted">Complete your style with premium accessories</p>
+    </div>
+
+    <div class="row">
+
+        <!-- ===== SIDEBAR FILTER ===== -->
+        {% comment %} <div class="col-md-3 mb-4">
+            <div class="card shadow-sm p-3">
+                <h5>Filter By</h5>
+                <hr>
+
+                <h6>Category</h6>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox">
+                    <label class="form-check-label">Bags</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox">
+                    <label class="form-check-label">Watches</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox">
+                    <label class="form-check-label">Sunglasses</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox">
+                    <label class="form-check-label">Jewelry</label>
+                </div>
+
+                <hr>
+
+                <h6>Price Range</h6>
+                <input type="range" class="form-range">
+                <p class="small text-muted">Up to ₹10,000</p>
+
+                <button class="btn btn-warning w-100 mt-3">Apply</button>
+            </div>
+        </div> {% endcomment %}
+
+        <!-- ===== PRODUCT GRID ===== -->
+        <div>
+            <div class="row g-4">
+
+                <!-- Product 1 -->
+                <div class="col-md-4 col-sm-6">
+                    <div class="card h-100 shadow-sm">
+                        <img src="{% static 'main/category/accessories/purse.jpg' %}"
+                             class="card-img-top"
+                             style="height:280px; object-fit:cover;"
+                             alt="Handbag">
+                        <div class="card-body text-center mb-3">
+                            <h6 class="card-title">Stylish Handbag</h6>
+                            <p class="fw-bold text-success">₹2,499</p>
+                            <a href="{% url 'product_detail' 34 %}" class="btn btn-sm btn-primary">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="col-md-4 col-sm-6">
+                    <div class="card h-100 shadow-sm">
+                        <img src="{% static 'main/category/accessories/wrist.webp' %}"
+                             class="card-img-top"
+                             style="height:280px; object-fit:cover;"
+                             alt="Watch">
+                        <div class="card-body text-center mb-3">
+                            <h6 class="card-title">Luxury Wrist Watch</h6>
+                            <p class="fw-bold text-success">₹4,999</p>
+                            <a href="{% url 'product_detail' 35 %}" class="btn btn-sm btn-primary">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="col-md-4 col-sm-6">
+                    <div class="card h-100 shadow-sm">
+                        <img src="{% static 'main/category/accessories/sunglass.jpg' %}"
+                             class="card-img-top"
+                             style="height:280px; object-fit:cover;"
+                             alt="Sunglasses">
+                        <div class="card-body text-center mb-3">
+                            <h6 class="card-title">Designer Sunglasses</h6>
+                            <p class="fw-bold text-success">₹1,799</p>
+                            <a href="{% url 'product_detail' 36 %}" class="btn btn-sm btn-primary">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="col-md-4 col-sm-6">
+                    <div class="card h-100 shadow-sm">
+                        <img src="{% static 'main/category/accessories/necklace.jpg' %}"
+                             class="card-img-top"
+                             style="height:280px; object-fit:cover;"
+                             alt="Necklace">
+                        <div class="card-body text-center mb-3">
+                            <h6 class="card-title">Gold Plated Necklace</h6>
+                            <p class="fw-bold text-success">₹3,299</p>
+                            <a href="{% url 'product_detail' 37 %}" class="btn btn-sm btn-primary">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 5 -->
+                <div class="col-md-4 col-sm-6">
+                    <div class="card h-100 shadow-sm">
+                        <img src="{% static 'main/category/accessories/bag.jpg' %}"
+                             class="card-img-top"
+                             style="height:280px; object-fit:cover;"
+                             alt="Backpack">
+                        <div class="card-body text-center mb-3">
+                            <h6 class="card-title">Travel Backpack</h6>
+                            <p class="fw-bold text-success">₹2,199</p>
+                            <a href="{% url 'product_detail' 38 %}" class="btn btn-sm btn-primary">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 6 -->
+                <div class="col-md-4 col-sm-6">
+                    <div class="card h-100 shadow-sm">
+                        <img src="{% static 'main/category/accessories/bracelet.webp' %}"
+                             class="card-img-top"
+                             style="height:280px; object-fit:cover;"
+                             alt="Bracelet">
+                        <div class="card-body text-center mb-3">
+                            <h6 class="card-title">Stylish Bracelet</h6>
+                            <p class="fw-bold text-success">₹999</p>
+                            <a href="{% url 'product_detail' 39 %}" class="btn btn-sm btn-primary">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

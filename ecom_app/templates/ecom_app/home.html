@@ -1,0 +1,112 @@
+{% extends "ecom_app/base.html" %}
+{% load static %}
+
+{% block title %}Home | MyShop{% endblock %}
+
+{% block content %}
+
+<!-- ================= HERO SECTION ================= -->
+
+
+
+
+<!-- ================= CATEGORIES SECTION ================= -->
+<section class="my-5">
+    <h2 class="mb-4 text-center fw-bold" >Featured Categories</h2>
+    <div class="row g-4">
+
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <img src="{% static 'main/category/image1.jpg' %}" class="card-img-top" alt="Electronics" style = "height: 250px; width: 100%;  object-fit: cover;">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Home Appliances</h5>
+                    <a href="{% url 'appliance' %}" class="btn btn-outline-primary">View Products</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <img src="{% static 'main/category/image2.jpg' %}" class="card-img-top" alt="Fashion" style = "height: 250px; width: 100%;  object-fit: cover;">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Fashion</h5>
+                    <a href="{% url 'fashion' %}" class="btn btn-outline-primary">View Products</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <img src="{% static 'main/category/image3.png' %}" class="card-img-top" alt="Home Appliances" style = "height: 250px; width: 100%;  object-fit: cover;">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Electronics</h5>
+                    <a href="{% url 'electronic' %}" class="btn btn-outline-primary">View Products</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- ================= FEATURED PRODUCTS ================= -->
+<section class="mb-5">
+    <h2 class="mb-4 text-center fw-bold">Featured Products</h2>
+    <div class="row g-4">
+
+        <div class="col-md-3">
+            <div class="card h-100 shadow-sm">
+                <img src="{% static 'main/products/headphone.webp' %}" class="card-img-top" alt="Product" style = "height: 260px;  object-fit: cover;">
+                <div class="card-body text-center">
+                    <h6 class="card-title">Wireless Headphones</h6>
+                    <p class="fw-bold text-success">₹2,499</p>
+                    <a href="#" class="btn btn-sm btn-warning">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card h-100 shadow-sm">
+                <img src="{% static 'main/products/watch.jpg' %}" class="card-img-top" alt="Product" style = "height: 260px;  object-fit: cover;">
+                <div class="card-body text-center">
+                    <h6 class="card-title">Smart Watch</h6>
+                    <p class="fw-bold text-success">₹1,999</p>
+                    <a href="#" class="btn btn-sm btn-warning">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card h-100 shadow-sm">
+                <img src="{% static 'main/products/jacket.jpg' %}" class="card-img-top" alt="Product" style = "height: 260px;  object-fit: cover;">
+                <div class="card-body text-center">
+                    <h6 class="card-title">Men's Jacket</h6>
+                    <p class="fw-bold text-success">₹3,299</p>
+                    <a href="#" class="btn btn-sm btn-warning">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card h-100 shadow-sm">
+                <img src="{% static 'main/products/bluetooth.webp' %}" class="card-img-top" alt="Product" style = "height: 260px;  object-fit: cover;">
+                <div class="card-body text-center">
+                    <h6 class="card-title">Bluetooth Earphones</h6>
+                    <p class="fw-bold text-success">₹1,499</p>
+                    <a href="#" class="btn btn-sm btn-warning">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- ================= PROMOTION SECTION ================= -->
+<section class="bg-light text-dark p-5 rounded text-center fw-bold">
+    <h2>Big Sale – Up to 50% Off!</h2>
+    <p>Limited time offer on selected products</p>
+    <a href="{% url 'products' %}" class="btn btn-secondary">Explore Now</a>
+</section>
+
+{% endblock %}
