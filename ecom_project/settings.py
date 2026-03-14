@@ -25,12 +25,12 @@ SECRET_KEY = 'django-insecure-^(vhs8)y(9w+j2s6#@xjj!&nuwnyp5v*jg!krnb8n@me&h#jf7
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['kritikaraturi.pythonanywhere.com']
+# ALLOWED_HOSTS = ['kritikaraturi.pythonanywhere.com']
 
 # For local development
 # DEBUG = True
 
-# ALLOWED_HOSTS = []
+ALLOWED_HOSTS = []
 
 STATIC_URL = '/static/'
 STATIC_ROOT = '/home/kritikaraturi/E-Commerce/staticfiles'

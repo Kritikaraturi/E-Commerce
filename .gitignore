@@ -24,3 +24,15 @@ staticfiles/
 # Other
 *.bak
 *.swp
+
+
+Ignore Python cache files
+__pycache__/
+*.pyc
+
+# Ignore local DB
+db.sqlite3
+
+# Ignore virtual environments
+venv/
+myenv/
