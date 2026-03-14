@@ -27,6 +27,11 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['kritikaraturi.pythonanywhere.com']
 
+# For local development
+# DEBUG = True
+
+# ALLOWED_HOSTS = []
+
 STATIC_URL = '/static/'
 STATIC_ROOT = '/home/kritikaraturi/E-Commerce/staticfiles'
 
