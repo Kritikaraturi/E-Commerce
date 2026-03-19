@@ -1,5 +1,5 @@
-from django.urls import path
-from ecom_app.views import base, home, products, electronic, appliance, gaming, fashion, accessories, beauty, product_detail, RegistrationView, user_logout, profile
+from django.urls import path, reverse_lazy
+from ecom_app.views import base, home, products, electronic, appliance, gaming, fashion, accessories, beauty, product_detail, RegistrationView, user_logout, profile, changepassworddone
 
 from django.conf import settings
 from django.conf.urls.static import static
@@ -22,5 +22,6 @@ urlpatterns = [
     path('login/', auth_views.LoginView.as_view(template_name = "ecom_app/login.html", authentication_form = LoginForm), name = "login"),
     path('logout/', user_logout, name='logout'),
     path('profile/', profile, name='profile'),
-    path('changepassword/', auth_views.PasswordChangeView.as_view(template_name = 'ecom_app/changepassword.html', form_class = PasswordChangeForm), name='changepassword'),
+    path('changepassword/', auth_views.PasswordChangeView.as_view(template_name='ecom_app/changepassword.html', form_class=PasswordChangeForm, success_url=reverse_lazy('passwordchangedone')), name='changepassword'),
+    path('passwordchangedone/', changepassworddone, name='passwordchangedone'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -119,6 +119,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'profile'
 LOGOUT_REDIRECT_URL = 'login'
+# PASSWORD_CHANGE_DONE_URL = 'login'
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/

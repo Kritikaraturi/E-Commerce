@@ -58,3 +58,6 @@ def user_logout(request):
 
 def profile(request):
     return render(request, 'ecom_app/profile.html')
+
+def changepassworddone(request):
+    return render(request, 'ecom_app/changepassworddone.html')
