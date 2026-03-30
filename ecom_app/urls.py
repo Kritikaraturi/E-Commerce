@@ -25,7 +25,7 @@ urlpatterns = [
     path('profile/', profile, name='profile'),
     path("profile2/", views.get_curent_user_profile,name="profile2"),
     path("add_to_cart/", add_to_cart, name="add_to_cart"),
-    path('cart/', cart_view, name='cart'),
+    # path('cart/', cart_view, name='cart'),
     path('changepassword/', auth_views.PasswordChangeView.as_view(template_name='ecom_app/changepassword.html', form_class=PasswordChangeForm, success_url=reverse_lazy('passwordchangedone')), name='changepassword'),
     path('passwordchangedone/', changepassworddone, name='passwordchangedone'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
