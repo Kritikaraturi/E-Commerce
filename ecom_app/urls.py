@@ -1,5 +1,5 @@
 from django.urls import path, reverse_lazy
-from ecom_app.views import base, home, products, electronic, appliance, gaming, fashion, accessories, beauty, product_detail, RegistrationView, user_logout, profile, changepassworddone, add_to_cart, cart_view
+from ecom_app.views import base, home, products, electronic, appliance, gaming, fashion, accessories, beauty, product_detail, RegistrationView, user_logout, profile, changepassworddone, add_to_cart
 
 from django.conf import settings
 from django.conf.urls.static import static
@@ -28,4 +28,5 @@ urlpatterns = [
     path('cart/', views.cart_view, name='cart'),
     path('changepassword/', auth_views.PasswordChangeView.as_view(template_name='ecom_app/changepassword.html', form_class=PasswordChangeForm, success_url=reverse_lazy('passwordchangedone')), name='changepassword'),
     path('passwordchangedone/', changepassworddone, name='passwordchangedone'),
+    path('remove-from-cart/<int:id>/', views.remove_from_cart, name='remove_from_cart'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -38,7 +38,7 @@
 
                         <!-- Remove Button -->
                         <div class="col-md-2 text-center">
-                            <a href="#" 
+                            <a href="{% url 'remove_from_cart' item.id %}" 
                             class="btn btn-danger btn-sm">
                                 ❌ Remove
                             </a>
@@ -67,7 +67,7 @@
 
             {% else %}
 
-                <div class="text-center mt-5">
+                <div class="text-center my-5">
                     <h4>Your cart is empty 😢</h4>
                     <a href="{% url 'home' %}" class="btn btn-primary mt-3">
                         Shop Now

@@ -131,3 +131,8 @@ def cart_view(request):
         'cart_items': cart_items,
         'total_amount': total_amount
     })
+
+def remove_from_cart(request, id):
+    item = Cart.objects.get(id=id, user=request.user)
+    item.delete()
+    return redirect('cart')
