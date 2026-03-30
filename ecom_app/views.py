@@ -1,10 +1,11 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Product
+from .models import Product, Customer
 from django.views import View
-from .forms import CustomerRegistrationForm
+from .forms import CustomerRegistrationForm, CustomerProfileForm
 from django.contrib import messages
 from django.contrib.auth import logout
 from django.shortcuts import redirect
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 def base(request):
     return render(request, 'ecom_app/base.html')
@@ -56,8 +57,42 @@ def user_logout(request):
     logout(request)
     return redirect('login')
 
+@login_required(login_url='login')
 def profile(request):
-    return render(request, 'ecom_app/profile.html')
+
+    profile = Customer.objects.filter(user=request.user).first()
+    print("hello kjdfksjdkfj sdfjdskjfksdjfksdjfkjds")
+    # POST request handle karo pehle
+    if request.method == "POST":
+        form = CustomerProfileForm(request.POST, request.FILES, instance=profile)
+
+        print("POST HIT ✅")
+
+        if form.is_valid():
+            data = form.save(commit=False)
+            data.user = request.user
+            data.save()
+
+            print("DATA SAVED ✅")
+
+            return redirect("profile2")   # ✔ correct
+
+        else:
+            print("ERROR:", form.errors)
+
+    else:
+        form = CustomerProfileForm(instance=profile)
+
+    return render(request,'ecom_app/profile.html', {'form': form,})
+
+@login_required(login_url='login')
+def get_curent_user_profile(request):
+    profile = Customer.objects.filter(user=request.user).first()
+
+    if not profile:
+        return redirect("profile")
+
+    return render(request, "ecom_app/profile2.html", {"profile": profile})
 
 def changepassworddone(request):
     return render(request, 'ecom_app/changepassworddone.html')

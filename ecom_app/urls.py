@@ -5,6 +5,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
 from .forms import LoginForm, PasswordChangeForm
+from ecom_app import views
 
 
 urlpatterns = [
@@ -22,6 +23,7 @@ urlpatterns = [
     path('login/', auth_views.LoginView.as_view(template_name = "ecom_app/login.html", authentication_form = LoginForm), name = "login"),
     path('logout/', user_logout, name='logout'),
     path('profile/', profile, name='profile'),
+    path("profile2/", views.get_curent_user_profile,name="profile2"),
     path('changepassword/', auth_views.PasswordChangeView.as_view(template_name='ecom_app/changepassword.html', form_class=PasswordChangeForm, success_url=reverse_lazy('passwordchangedone')), name='changepassword'),
     path('passwordchangedone/', changepassworddone, name='passwordchangedone'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
