@@ -101,19 +101,24 @@ def changepassworddone(request):
 def add_to_cart(request):
     if request.method == "POST":
         prod_id = request.POST.get('prod_id')
+        quantity = request.POST.get('quantity')
+
         product = Product.objects.get(id=prod_id)
         user = request.user
 
-        # check already exists
         item = Cart.objects.filter(user=user, product=product).first()
 
         if item:
-            item.quantity += 1
+            item.quantity += int(quantity)
             item.save()
         else:
-            Cart.objects.create(user=user, product=product, quantity=1)
+            Cart.objects.create(
+                user=user,
+                product=product,
+                quantity=int(quantity)
+            )
 
-    return redirect('cart') 
+    return redirect('cart')
 
 def cart_view(request):
     cart_items = Cart.objects.filter(user=request.user)
