@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Product, Customer
+from .models import Product, Customer, Cart
 from django.views import View
 from .forms import CustomerRegistrationForm, CustomerProfileForm
 from django.contrib import messages
@@ -97,5 +97,32 @@ def get_curent_user_profile(request):
 def changepassworddone(request):
     return render(request, 'ecom_app/changepassworddone.html')
 
+@login_required
 def add_to_cart(request):
-    return render(request, 'ecom_app/add_to_cart.html')
+    if request.method == "POST":
+        prod_id = request.POST.get('prod_id')
+        product = Product.objects.get(id=prod_id)
+        user = request.user
+
+        # check already exists
+        item = Cart.objects.filter(user=user, product=product).first()
+
+        if item:
+            item.quantity += 1
+            item.save()
+        else:
+            Cart.objects.create(user=user, product=product, quantity=1)
+
+    return redirect('cart') 
+
+def cart_view(request):
+    cart_items = Cart.objects.filter(user=request.user)
+
+    total_amount = 0
+    for item in cart_items:
+        total_amount += item.product.discounted_price * item.quantity
+
+    return render(request, 'ecom_app/cart.html', {
+        'cart_items': cart_items,
+        'total_amount': total_amount
+    })
