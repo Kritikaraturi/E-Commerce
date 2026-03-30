@@ -9,6 +9,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">  
             <h2 class="text-center mb-4">🛒 My Cart</h2>
+            <div class="card p-4 shadow-lg rounded-4 mt-4 text-center">
             {% if cart_items %}
 
                 {% for item in cart_items %}
@@ -49,14 +50,14 @@
                 {% endfor %}
 
                 <!-- Total Section -->
-                <div class="card p-4 shadow-lg rounded-4 mt-4 text-center">
+                
 
                     <h4>Total Amount</h4>
 
                     <h3 class="text-success">
                         ₹{{ total_amount }}
                     </h3>
-                    
+
                     <div class="text-center">
                         <a href="#" class="btn btn-success mt-3 px-4" style="width: 200px;">
                             Proceed to PAY
