@@ -402,10 +402,13 @@
                     <input type="number" id="quantity" name="quantity" class="form-control w-25" value="1" min="1" max="10">
                 </div>
 
+                <form action = "/add-to-cart">
+                    <input type = "hidden" name = "prod_id" value = {{product.id}} id = "prod_id">
+                    <button type = "submit" class = "btn btn-secondary shadow px-5 py-2">Add to Cart</button>
+                </form>
+
+
                 <div class="d-flex gap-3">
-                    <button type="submit" class="btn btn-warning px-4 py-2">
-                        <i class="bi bi-cart-plus"></i> Add to Cart
-                    </button>
                     <a href="#" class="btn btn-outline-success px-4 py-2">Buy Now</a>
                 </div>
             </form>
