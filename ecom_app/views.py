@@ -96,3 +96,6 @@ def get_curent_user_profile(request):
 
 def changepassworddone(request):
     return render(request, 'ecom_app/changepassworddone.html')
+
+def add_to_cart(request):
+    return render(request, 'ecom_app/add_to_cart.html')
