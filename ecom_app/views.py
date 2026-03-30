@@ -127,7 +127,7 @@ def cart_view(request):
     for item in cart_items:
         total_amount += item.product.discounted_price * item.quantity
 
-    return render(request, 'ecom_app/cart.html', {
+    return render(request, 'ecom_app/add_to_cart.html', {
         'cart_items': cart_items,
         'total_amount': total_amount
     })
