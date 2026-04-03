@@ -65,16 +65,16 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="{% url 'profile' %}">Profile</a></li>
-                        <li><a class="dropdown-item" href="#">Your Orders</a></li>
+                        <li><a class="dropdown-item" href="{% url 'my_orders' %}">Orders</a></li>
                         <li><a class="dropdown-item" href="{% url 'changepassword' %}">Change Password</a></li>
                         <li> <a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
                     </ul>
                 </li>
                 <li class="nav-item mx-4">
-                    <a class="nav-link position-relative" href="#">
+                    <a class="nav-link position-relative" href="{% url 'add_to_cart' %}">
                         Cart
                         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                            0
+                            {{cart_count}}
                         </span>
                     </a>
                 </li>

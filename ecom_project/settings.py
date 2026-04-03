@@ -73,6 +73,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'ecom_app.context_processors.cart_count',
             ],
         },
     },
@@ -142,3 +143,15 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+
+
+RAZORPAY_KEY_ID = "rzp_test_SYvA7FqWVwWYnI"
+RAZORPAY_KEY_SECRET = "wdzg42NM1GYfsVw8uD8fWsS4"
+
+
+# from decouple import config
+
+# RAZORPAY_KEY_ID = config('RAZORPAY_KEY_ID')
+# RAZORPAY_KEY_SECRET = config('RAZORPAY_KEY_SECRET')

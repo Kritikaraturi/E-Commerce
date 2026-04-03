@@ -1,6 +1,5 @@
 from django.urls import path, reverse_lazy
-from ecom_app.views import base, home, products, electronic, appliance, gaming, fashion, accessories, beauty, product_detail, RegistrationView, user_logout, profile, changepassworddone, add_to_cart
-
+from ecom_app.views import base, home, products, electronic, appliance, gaming, fashion, accessories, beauty, product_detail, RegistrationView, user_logout, profile, changepassworddone, add_to_cart, checkout
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
@@ -29,4 +28,10 @@ urlpatterns = [
     path('changepassword/', auth_views.PasswordChangeView.as_view(template_name='ecom_app/changepassword.html', form_class=PasswordChangeForm, success_url=reverse_lazy('passwordchangedone')), name='changepassword'),
     path('passwordchangedone/', changepassworddone, name='passwordchangedone'),
     path('remove-from-cart/<int:id>/', views.remove_from_cart, name='remove_from_cart'),
+    path('buy-now/', views.buy_now, name='buy_now'),
+    path('checkout/', views.checkout, name='checkout'),
+    path('payment-success/', views.payment_success, name='payment_success'),
+    path('my-orders/', views.my_orders, name='my_orders'),
+    path('forgot-password/', views.forgot_password, name='forgot_password'),
+    path('reset-password/', views.reset_password, name='reset_password'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
