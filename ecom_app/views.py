@@ -252,19 +252,31 @@ def my_orders(request):
     return render(request, "ecom_app/orders.html", {
         "orders": orders
     })
+from django.shortcuts import get_object_or_404
 
 @login_required
 def buy_now(request):
     if request.method == "POST":
         prod_id = request.POST.get('prod_id')
-        quantity = int(request.POST.get('quantity', 1))
+        quantity = request.POST.get('quantity', 1)
 
-        product = Product.objects.get(id=prod_id)
+        if not prod_id:
+            return redirect('home')   # safety
 
-        request.session['buy_now'] = {'product_id': product.id,'quantity': quantity}
+        product = get_object_or_404(Product, id=prod_id)
+
+        try:
+            quantity = int(quantity)
+        except:
+            quantity = 1
+
+        request.session['buy_now'] = {
+            'product_id': product.id,
+            'quantity': quantity
+        }
 
         return redirect('checkout')
-    
+
     return redirect('home')
 
 
