@@ -15,6 +15,18 @@ router.register(r'customers', CustomerViewSet)
 router.register(r'cart', CartViewSet)
 router.register(r'orders', OrderPlacedViewSet)
 
+# urls.py
+
+from rest_framework.routers import DefaultRouter
+from .views import UserAdminViewSet, ProductAdminViewSet, CustomerAdminViewSet, OrderAdminViewSet
+
+router = DefaultRouter()
+router.register('admin/users', UserAdminViewSet)
+router.register('admin/products', ProductAdminViewSet)
+router.register('admin/customers', CustomerAdminViewSet)
+router.register('admin/orders', OrderAdminViewSet)
+
+urlpatterns = router.urls
 
 urlpatterns = [
     path('api/', include(router.urls)),

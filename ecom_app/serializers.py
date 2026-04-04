@@ -16,7 +16,7 @@ class CustomerSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Customer
-        fields = ['id', 'user', 'name', 'locality', 'city', 'state']
+        fields = '__all__'
 
 
 # Product Serializer
@@ -32,7 +32,7 @@ class CartSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Cart
-        fields = ['id', 'user', 'product', 'quantity']
+        fields = '__all__'
 
 
 # Order Serializer

@@ -14,7 +14,10 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from rest_framework import viewsets
 from .models import Product, Customer, Cart, OrderPlaced
-from .serializers import ProductSerializer, CustomerSerializer, CartSerializer, OrderPlacedSerializer
+from .serializers import ProductSerializer, CustomerSerializer, CartSerializer, OrderPlacedSerializer, UserSerializer
+from rest_framework import viewsets
+from django.contrib.auth.models import User
+from rest_framework.permissions import AllowAny
 
 
 # Create your views here.
@@ -302,28 +305,45 @@ def reset_password(request):
 
     return render(request, 'ecom_app/reset_password.html')
 
-
-
-
 # Product CRUD
 class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
-
 
 # Customer CRUD
 class CustomerViewSet(viewsets.ModelViewSet):
     queryset = Customer.objects.all()
     serializer_class = CustomerSerializer
 
-
 # Cart CRUD
 class CartViewSet(viewsets.ModelViewSet):
     queryset = Cart.objects.all()
     serializer_class = CartSerializer
 
-
 # Order CRUD
 class OrderPlacedViewSet(viewsets.ModelViewSet):
     queryset = OrderPlaced.objects.all()
     serializer_class = OrderPlacedSerializer
+
+
+
+
+class UserAdminViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = [AllowAny]
+
+class ProductAdminViewSet(viewsets.ModelViewSet):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+    permission_classes = [AllowAny]
+
+class CustomerAdminViewSet(viewsets.ModelViewSet):
+    queryset = Customer.objects.all()
+    serializer_class = CustomerSerializer
+    permission_classes = [AllowAny]
+
+class OrderAdminViewSet(viewsets.ModelViewSet):
+    queryset = OrderPlaced.objects.all()
+    serializer_class = OrderPlacedSerializer
+    permission_classes = [AllowAny]
