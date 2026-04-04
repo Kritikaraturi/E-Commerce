@@ -5,9 +5,19 @@ from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
 from .forms import LoginForm, PasswordChangeForm
 from ecom_app import views
+from rest_framework.routers import DefaultRouter
+from .views import ProductViewSet, CustomerViewSet, CartViewSet, OrderPlacedViewSet
+from django.urls import path, include
+router = DefaultRouter()
+
+router.register(r'products', ProductViewSet)
+router.register(r'customers', CustomerViewSet)
+router.register(r'cart', CartViewSet)
+router.register(r'orders', OrderPlacedViewSet)
 
 
 urlpatterns = [
+    path('api/', include(router.urls)),
     path('base/', base, name='base'),
     path('home/', home, name='home'),
     path('products/', products, name='products'),

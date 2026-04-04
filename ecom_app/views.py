@@ -12,6 +12,9 @@ from django.contrib.auth import authenticate
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
+from rest_framework import viewsets
+from .models import Product, Customer, Cart, OrderPlaced
+from .serializers import ProductSerializer, CustomerSerializer, CartSerializer, OrderPlacedSerializer
 
 
 # Create your views here.
@@ -25,22 +28,28 @@ def products(request):
     return render(request, 'ecom_app/products.html')
 
 def electronic(request):
-    return render(request, 'ecom_app/electronic.html')
+    products = Product.objects.filter(category='Electronics')
+    return render(request, 'ecom_app/electronic.html', {'products': products})
 
 def appliance(request):
-    return render(request, 'ecom_app/appliance.html')
+    products = Product.objects.filter(category='Home Appliances')
+    return render(request, 'ecom_app/appliance.html', {'products': products})
 
 def gaming(request):
-    return render(request, 'ecom_app/gaming.html')
+    products = Product.objects.filter(category='Gaming')
+    return render(request, 'ecom_app/gaming.html', {'products': products})
 
 def fashion(request):
-    return render(request, 'ecom_app/fashion.html')
+    products = Product.objects.filter(category='Fashion')
+    return render(request, 'ecom_app/fashion.html', {'products': products})
 
 def accessories(request):
-    return render(request, 'ecom_app/accessories.html')
+    products = Product.objects.filter(category='Accessories')
+    return render(request, 'ecom_app/accessories.html', {'products': products})
 
 def beauty(request):
-    return render(request, 'ecom_app/beauty.html')
+    products = Product.objects.filter(category='Beauty')
+    return render(request, 'ecom_app/beauty.html', {'products': products})
 
 def product_detail(request, product_id):
     product = Product.objects.get(id=product_id)
@@ -292,3 +301,29 @@ def reset_password(request):
             messages.error(request, 'Passwords do not match.')
 
     return render(request, 'ecom_app/reset_password.html')
+
+
+
+
+# Product CRUD
+class ProductViewSet(viewsets.ModelViewSet):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+
+
+# Customer CRUD
+class CustomerViewSet(viewsets.ModelViewSet):
+    queryset = Customer.objects.all()
+    serializer_class = CustomerSerializer
+
+
+# Cart CRUD
+class CartViewSet(viewsets.ModelViewSet):
+    queryset = Cart.objects.all()
+    serializer_class = CartSerializer
+
+
+# Order CRUD
+class OrderPlacedViewSet(viewsets.ModelViewSet):
+    queryset = OrderPlaced.objects.all()
+    serializer_class = OrderPlacedSerializer

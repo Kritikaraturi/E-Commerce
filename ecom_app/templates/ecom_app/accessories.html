@@ -13,47 +13,11 @@
         <p class="text-muted">Complete your style with premium accessories</p>
     </div>
 
-    <div class="row">
 
-        <!-- ===== SIDEBAR FILTER ===== -->
-        {% comment %} <div class="col-md-3 mb-4">
-            <div class="card shadow-sm p-3">
-                <h5>Filter By</h5>
-                <hr>
 
-                <h6>Category</h6>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox">
-                    <label class="form-check-label">Bags</label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox">
-                    <label class="form-check-label">Watches</label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox">
-                    <label class="form-check-label">Sunglasses</label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox">
-                    <label class="form-check-label">Jewelry</label>
-                </div>
-
-                <hr>
-
-                <h6>Price Range</h6>
-                <input type="range" class="form-range">
-                <p class="small text-muted">Up to ₹10,000</p>
-
-                <button class="btn btn-warning w-100 mt-3">Apply</button>
-            </div>
-        </div> {% endcomment %}
-
-        <!-- ===== PRODUCT GRID ===== -->
-        <div>
             <div class="row g-4">
 
-                <!-- Product 1 -->
+                {% comment %} <!-- Product 1 -->
                 <div class="col-md-4 col-sm-6">
                     <div class="card h-100 shadow-sm">
                         <img src="{% static 'main/category/accessories/purse.jpg' %}"
@@ -144,9 +108,45 @@
                 </div>
 
             </div>
-        </div>
+            </div> {% endcomment %}
 
-    </div>
+            {% if products %}
+            <div class="row g-4">
+
+                {% for product in products %}
+                <div class="col-md-4 col-sm-6">
+                    <div class="card h-100 shadow-sm">
+
+                        <img src="{{ product.product_image.url }}"
+                            class="card-img-top"
+                            style="height:280px; object-fit:cover;"
+                            alt="{{ product.title }}">
+
+                        <div class="card-body text-center mb-3">
+                            <h6 class="card-title">{{ product.title }}</h6>
+
+                            <p class="fw-bold text-success">
+                                ₹{{ product.discounted_price }}
+                            </p>
+
+                            <a href="{% url 'product_detail' product.id %}"
+                            class="btn btn-sm btn-primary">
+                            View Details
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+                {% endfor %}
+
+            
+
+                {% else %}
+                <h4 class="text-center">No Accessories products available</h4>
+                {% endif %}
+            
+            </div>
+        </div>
 
 </div>
 

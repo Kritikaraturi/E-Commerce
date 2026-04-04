@@ -30,7 +30,7 @@ ALLOWED_HOSTS = ['kritikaraturi.pythonanywhere.com']
 # For local development
 # DEBUG = True
 
-# ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = []    
 
 STATIC_URL = '/static/'
 STATIC_ROOT = '/home/kritikaraturi/E-Commerce/staticfiles'
@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'ecom_app',
 ]
 
