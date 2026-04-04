@@ -255,6 +255,8 @@ def buy_now(request):
         request.session['buy_now'] = {'product_id': product.id,'quantity': quantity}
 
         return redirect('checkout')
+    
+    return redirect('home')
 
 
 def forgot_password(request):
