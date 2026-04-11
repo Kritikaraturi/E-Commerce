@@ -5,182 +5,81 @@
 
 {% block content %}
 
-{% comment %} <div class="container my-5">
+<div class="container my-5">
 
-    <!-- ===== PAGE HEADER ===== -->
+    <!-- HEADER -->
     <div class="text-center mb-4">
         <h2 class="fw-bold">Beauty & Personal Care</h2>
         <p class="text-muted">Enhance your natural beauty with premium products</p>
     </div>
 
-    <div class="row">
+    <!-- PRODUCT GRID -->
+    <div class="row g-4">
 
-        <!-- ===== PRODUCT GRID ===== -->
-        <div>
-            <div class="row g-4">
+        {% for product in page_obj %}
+        <div class="col-md-4 col-sm-6">
+            <div class="card h-100 shadow-sm">
 
-                <!-- Product 1 -->
-                <div class="col-md-4 col-sm-6">
-                    <div class="card h-100 shadow-sm">
-                        <img src="{% static 'main/category/beauty/cream.webp' %}"
-                             class="card-img-top"
-                             style="height:280px; object-fit:cover;"
-                             alt="Face Cream">
-                        <div class="card-body text-center mb-3">
-                            <h6 class="card-title">Hydrating Face Cream</h6>
-                            <p class="fw-bold text-success">₹799</p>
-                            <a href="{% url 'product_detail' 40 %}" class="btn btn-sm"
-                               style="background-color:#e83e8c; color:white;">
-                               View Details
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                <img src="{{ product.product_image.url }}"
+                     class="card-img-top"
+                     style="height:280px; object-fit:cover;"
+                     alt="{{ product.title }}">
 
-                <!-- Product 2 -->
-                <div class="col-md-4 col-sm-6">
-                    <div class="card h-100 shadow-sm">
-                        <img src="{% static 'main/category/beauty/shampoo.webp' %}"
-                             class="card-img-top"
-                             style="height:280px; object-fit:cover;"
-                             alt="Shampoo">
-                        <div class="card-body text-center mb-3">
-                            <h6 class="card-title">Herbal Shampoo</h6>
-                            <p class="fw-bold text-success">₹499</p>
-                            <a href="{% url 'product_detail' 41 %}" class="btn btn-sm"
-                               style="background-color:#e83e8c; color:white;">
-                               View Details
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                <div class="card-body text-center mb-3">
+                    <h6 class="card-title">{{ product.title }}</h6>
 
-                <!-- Product 3 -->
-                <div class="col-md-4 col-sm-6">
-                    <div class="card h-100 shadow-sm">
-                        <img src="{% static 'main/category/beauty/lipstick.webp' %}"
-                             class="card-img-top"
-                             style="height:280px; object-fit:cover;"
-                             alt="Lipstick">
-                        <div class="card-body text-center mb-3">
-                            <h6 class="card-title">Matte Lipstick</h6>
-                            <p class="fw-bold text-success">₹699</p>
-                            <a href="{% url 'product_detail' 42 %}" class="btn btn-sm"
-                               style="background-color:#e83e8c; color:white;">
-                               View Details
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                    <p class="fw-bold text-success">
+                        ₹{{ product.discounted_price }}
+                    </p>
 
-                <!-- Product 4 -->
-                <div class="col-md-4 col-sm-6">
-                    <div class="card h-100 shadow-sm">
-                        <img src="{% static 'main/category/beauty/perfume.webp' %}"
-                             class="card-img-top"
-                             style="height:280px; object-fit:cover;"
-                             alt="Perfume">
-                        <div class="card-body text-center mb-3">
-                            <h6 class="card-title">Luxury Perfume</h6>
-                            <p class="fw-bold text-success">₹2,499</p>
-                            <a href="{% url 'product_detail' 43 %}" class="btn btn-sm"
-                               style="background-color:#e83e8c; color:white;">
-                               View Details
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product 5 -->
-                <div class="col-md-4 col-sm-6">
-                    <div class="card h-100 shadow-sm">
-                        <img src="{% static 'main/category/beauty/facewash.webp' %}"
-                             class="card-img-top"
-                             style="height:280px; object-fit:cover;"
-                             alt="Face Wash">
-                        <div class="card-body text-center mb-3">
-                            <h6 class="card-title">Gentle Face Wash</h6>
-                            <p class="fw-bold text-success">₹349</p>
-                            <a href="{% url 'product_detail' 44 %}" class="btn btn-sm"
-                               style="background-color:#e83e8c; color:white;">
-                               View Details
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product 6 -->
-                <div class="col-md-4 col-sm-6">
-                    <div class="card h-100 shadow-sm">
-                        <img src="{% static 'main/category/beauty/oil.webp' %}"
-                             class="card-img-top"
-                             style="height:280px; object-fit:cover;"
-                             alt="Hair Oil">
-                        <div class="card-body text-center mb-3">
-                            <h6 class="card-title">Natural Hair Oil</h6>
-                            <p class="fw-bold text-success">₹599</p>
-                            <a href="{% url 'product_detail' 45 %}" class="btn btn-sm"
-                               style="background-color:#e83e8c; color:white;">
-                               View Details
-                            </a>
-                        </div>
-                    </div>
+                    <a href="{% url 'product_detail' product.id %}"
+                       class="btn btn-sm"
+                       style="background-color:#e83e8c; color:white;">
+                        View Details
+                    </a>
                 </div>
 
             </div>
         </div>
+        {% endfor %}
 
     </div>
 
-</div> {% endcomment %}
+    <!-- PAGINATION -->
+    <nav class="mt-4">
+        <ul class="pagination justify-content-center">
 
-<div class="text-center mb-4">
-        <h2 class="fw-bold">Beauty & Personal Care</h2>
-        <p class="text-muted">Enhance your natural beauty with premium products</p>
-</div>
+            <!-- Prev -->
+            <li class="page-item {% if not page_obj.has_previous %}disabled{% endif %}">
+                <a class="page-link"
+                   href="{% if page_obj.has_previous %}?page={{ page_obj.previous_page_number }}{% else %}#{% endif %}">
+                    &laquo; Prev
+                </a>
+            </li>
 
-<div class="row g-4">
-    
-    <div class="row g-4">
-        {% if products %}
-        <div class="row g-4">
-
-            {% for product in products %}
-            <div class="col-md-4 col-sm-6">
-                <div class="card h-100 shadow-sm">
-
-                    <img src="{{ product.product_image.url }}"
-                        class="card-img-top"
-                        style="height:280px; object-fit:cover;"
-                        alt="{{ product.title }}">
-
-                    <div class="card-body text-center mb-3">
-                        <h6 class="card-title">{{ product.title }}</h6>
-
-                        <p class="fw-bold text-success">
-                            ₹{{ product.discounted_price }}
-                        </p>
-
-                        <a href="{% url 'product_detail' product.id %}"
-                        class="btn btn-sm"
-                        style="background-color:#e83e8c; color:white;">
-                        View Details
-                        </a>
-                    </div>
-
-                </div>
-            </div>
+            <!-- Pages -->
+            {% for num in page_obj.paginator.page_range %}
+                {% if page_obj.number == num %}
+                    <li class="page-item active">
+                        <span class="page-link">{{ num }}</span>
+                    </li>
+                {% elif num > page_obj.number|add:'-2' and num < page_obj.number|add:'3' %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                    </li>
+                {% endif %}
             {% endfor %}
 
-        
-        {% else %}
-            <h4 class="text-center">No products available</h4>
-        {% endif %}
-        </div>
-    </div>
+            <!-- Next -->
+            <li class="page-item {% if not page_obj.has_next %}disabled{% endif %}">
+                <a class="page-link"
+                   href="{% if page_obj.has_next %}?page={{ page_obj.next_page_number }}{% else %}#{% endif %}">
+                    Next &raquo;
+                </a>
+            </li>
 
-    
-
+        </ul>
+    </nav>
 
 </div>
 

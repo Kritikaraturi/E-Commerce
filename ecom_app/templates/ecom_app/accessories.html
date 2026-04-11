@@ -16,104 +16,11 @@
 
 
             <div class="row g-4">
+            {% if page_obj %}
 
-                {% comment %} <!-- Product 1 -->
-                <div class="col-md-4 col-sm-6">
-                    <div class="card h-100 shadow-sm">
-                        <img src="{% static 'main/category/accessories/purse.jpg' %}"
-                             class="card-img-top"
-                             style="height:280px; object-fit:cover;"
-                             alt="Handbag">
-                        <div class="card-body text-center mb-3">
-                            <h6 class="card-title">Stylish Handbag</h6>
-                            <p class="fw-bold text-success">₹2,499</p>
-                            <a href="{% url 'product_detail' 34 %}" class="btn btn-sm btn-primary">View Details</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product 2 -->
-                <div class="col-md-4 col-sm-6">
-                    <div class="card h-100 shadow-sm">
-                        <img src="{% static 'main/category/accessories/wrist.webp' %}"
-                             class="card-img-top"
-                             style="height:280px; object-fit:cover;"
-                             alt="Watch">
-                        <div class="card-body text-center mb-3">
-                            <h6 class="card-title">Luxury Wrist Watch</h6>
-                            <p class="fw-bold text-success">₹4,999</p>
-                            <a href="{% url 'product_detail' 35 %}" class="btn btn-sm btn-primary">View Details</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product 3 -->
-                <div class="col-md-4 col-sm-6">
-                    <div class="card h-100 shadow-sm">
-                        <img src="{% static 'main/category/accessories/sunglass.jpg' %}"
-                             class="card-img-top"
-                             style="height:280px; object-fit:cover;"
-                             alt="Sunglasses">
-                        <div class="card-body text-center mb-3">
-                            <h6 class="card-title">Designer Sunglasses</h6>
-                            <p class="fw-bold text-success">₹1,799</p>
-                            <a href="{% url 'product_detail' 36 %}" class="btn btn-sm btn-primary">View Details</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product 4 -->
-                <div class="col-md-4 col-sm-6">
-                    <div class="card h-100 shadow-sm">
-                        <img src="{% static 'main/category/accessories/necklace.jpg' %}"
-                             class="card-img-top"
-                             style="height:280px; object-fit:cover;"
-                             alt="Necklace">
-                        <div class="card-body text-center mb-3">
-                            <h6 class="card-title">Gold Plated Necklace</h6>
-                            <p class="fw-bold text-success">₹3,299</p>
-                            <a href="{% url 'product_detail' 37 %}" class="btn btn-sm btn-primary">View Details</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product 5 -->
-                <div class="col-md-4 col-sm-6">
-                    <div class="card h-100 shadow-sm">
-                        <img src="{% static 'main/category/accessories/bag.jpg' %}"
-                             class="card-img-top"
-                             style="height:280px; object-fit:cover;"
-                             alt="Backpack">
-                        <div class="card-body text-center mb-3">
-                            <h6 class="card-title">Travel Backpack</h6>
-                            <p class="fw-bold text-success">₹2,199</p>
-                            <a href="{% url 'product_detail' 38 %}" class="btn btn-sm btn-primary">View Details</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product 6 -->
-                <div class="col-md-4 col-sm-6">
-                    <div class="card h-100 shadow-sm">
-                        <img src="{% static 'main/category/accessories/bracelet.webp' %}"
-                             class="card-img-top"
-                             style="height:280px; object-fit:cover;"
-                             alt="Bracelet">
-                        <div class="card-body text-center mb-3">
-                            <h6 class="card-title">Stylish Bracelet</h6>
-                            <p class="fw-bold text-success">₹999</p>
-                            <a href="{% url 'product_detail' 39 %}" class="btn btn-sm btn-primary">View Details</a>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            </div> {% endcomment %}
-
-            {% if products %}
             <div class="row g-4">
 
-                {% for product in products %}
+                {% for product in page_obj %}
                 <div class="col-md-4 col-sm-6">
                     <div class="card h-100 shadow-sm">
 
@@ -131,7 +38,7 @@
 
                             <a href="{% url 'product_detail' product.id %}"
                             class="btn btn-sm btn-primary">
-                            View Details
+                                View Details
                             </a>
                         </div>
 
@@ -139,11 +46,47 @@
                 </div>
                 {% endfor %}
 
-            
+            </div>
 
-                {% else %}
+            <!-- PAGINATION -->
+            <nav class="mt-4">
+                <ul class="pagination justify-content-center">
+
+                    <!-- Prev -->
+                    <li class="page-item {% if not page_obj.has_previous %}disabled{% endif %}">
+                        <a class="page-link"
+                        href="{% if page_obj.has_previous %}?page={{ page_obj.previous_page_number }}{% else %}#{% endif %}">
+                            &laquo; Prev
+                        </a>
+                    </li>
+
+                    <!-- Pages -->
+                    {% for num in page_obj.paginator.page_range %}
+                        {% if page_obj.number == num %}
+                            <li class="page-item active">
+                                <span class="page-link">{{ num }}</span>
+                            </li>
+                        {% elif num > page_obj.number|add:'-2' and num < page_obj.number|add:'3' %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+
+                    <!-- Next -->
+                    <li class="page-item {% if not page_obj.has_next %}disabled{% endif %}">
+                        <a class="page-link"
+                        href="{% if page_obj.has_next %}?page={{ page_obj.next_page_number }}{% else %}#{% endif %}">
+                            Next &raquo;
+                        </a>
+                    </li>
+
+                </ul>
+            </nav>
+
+            {% else %}
                 <h4 class="text-center">No Accessories products available</h4>
-                {% endif %}
+            {% endif %}
             
             </div>
         </div>

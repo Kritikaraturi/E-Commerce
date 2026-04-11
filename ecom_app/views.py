@@ -18,7 +18,7 @@ from .serializers import ProductSerializer, CustomerSerializer, CartSerializer, 
 from rest_framework import viewsets
 from django.contrib.auth.models import User
 from rest_framework.permissions import AllowAny
-
+from django.core.paginator import Paginator
 
 # Create your views here.
 def base(request):
@@ -31,28 +31,70 @@ def products(request):
     return render(request, 'ecom_app/products.html')
 
 def electronic(request):
-    products = Product.objects.filter(category='Electronics')
-    return render(request, 'ecom_app/electronic.html', {'products': products})
+    product_list = Product.objects.filter(category='Electronics').order_by('-id')
+
+    paginator = Paginator(product_list, 6)  # 6 products per page
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    return render(request, 'ecom_app/electronic.html', {
+        'page_obj': page_obj
+    })
 
 def appliance(request):
-    products = Product.objects.filter(category='Home Appliances')
-    return render(request, 'ecom_app/appliance.html', {'products': products})
+    product_list = Product.objects.filter(category='Home Appliances').order_by('-id')
+
+    paginator = Paginator(product_list, 6)  # 6 products per page
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    return render(request, 'ecom_app/appliance.html', {
+        'page_obj': page_obj
+    })
 
 def gaming(request):
-    products = Product.objects.filter(category='Gaming')
-    return render(request, 'ecom_app/gaming.html', {'products': products})
+    product_list = Product.objects.filter(category='Gaming').order_by('-id')
+
+    paginator = Paginator(product_list, 6)  # 6 products per page
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    return render(request, 'ecom_app/gaming.html', {
+        'page_obj': page_obj
+    })
 
 def fashion(request):
-    products = Product.objects.filter(category='Fashion')
-    return render(request, 'ecom_app/fashion.html', {'products': products})
+    product_list = Product.objects.filter(category='Fashion').order_by('-id')
+
+    paginator = Paginator(product_list, 6)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    return render(request, 'ecom_app/fashion.html', {
+        'page_obj': page_obj
+    })
 
 def accessories(request):
-    products = Product.objects.filter(category='Accessories')
-    return render(request, 'ecom_app/accessories.html', {'products': products})
+    product_list = Product.objects.filter(category='Accessories').order_by('-id')
+
+    paginator = Paginator(product_list, 6)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    return render(request, 'ecom_app/accessories.html', {
+        'page_obj': page_obj
+    })
 
 def beauty(request):
-    products = Product.objects.filter(category='Beauty')
-    return render(request, 'ecom_app/beauty.html', {'products': products})
+    product_list = Product.objects.filter(category='Beauty').order_by('-id')
+
+    paginator = Paginator(product_list, 6)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    return render(request, 'ecom_app/beauty.html', {
+        'page_obj': page_obj
+    })
 
 def product_detail(request, product_id):
     product = Product.objects.get(id=product_id)

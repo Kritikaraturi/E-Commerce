@@ -13,136 +13,76 @@
         <p class="text-muted">Explore the best gaming products for fun inside and outside</p>
     </div>
 
-        {% comment %} <!-- ===== PRODUCT GRID ===== -->
-        <div>
-            <div class="row g-4">
-
-                <!-- Outdoor Product -->
-                <div class="col-md-4 col-sm-6">
-                    <div class="card h-100 shadow-sm">
-                        <img src="{% static 'main/category/game/cricket.jpg' %}"
-                             class="card-img-top"
-                             style="height:280px; object-fit:cover;"
-                             alt="Cricket Kit">
-                        <div class="card-body text-center mb-3">
-                            <h6 class="card-title">Complete Cricket Kit</h6>
-                            <p class="fw-bold text-success">₹4,999</p>
-                            <a href="{% url 'product_detail' 22 %}" class="btn btn-sm btn-primary">View Details</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Outdoor Product -->
-                <div class="col-md-4 col-sm-6">
-                    <div class="card h-100 shadow-sm">
-                        <img src="{% static 'main/category/game/football.avif' %}"
-                             class="card-img-top"
-                             style="height:280px; object-fit:cover;"
-                             alt="Football">
-                        <div class="card-body text-center mb-3">
-                            <h6 class="card-title">Professional Football</h6>
-                            <p class="fw-bold text-success">₹1,299</p>
-                            <a href="{% url 'product_detail' 23 %}" class="btn btn-sm btn-primary">View Details</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Indoor Product -->
-                <div class="col-md-4 col-sm-6">
-                    <div class="card h-100 shadow-sm">
-                        <img src="{% static 'main/category/game/chess.jpg' %}"
-                             class="card-img-top"
-                             style="height:280px; object-fit:cover;"
-                             alt="Chess Board">
-                        <div class="card-body text-center mb-3">
-                            <h6 class="card-title">Wooden Chess Board</h6>
-                            <p class="fw-bold text-success">₹899</p>
-                            <a href="{% url 'product_detail' 24 %}" class="btn btn-sm btn-primary">View Details</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Indoor Product -->
-                <div class="col-md-4 col-sm-6">
-                    <div class="card h-100 shadow-sm">
-                        <img src="{% static 'main/category/game/carrom.jpg' %}"
-                             class="card-img-top"
-                             style="height:280px; object-fit:cover;"
-                             alt="Carrom Board">
-                        <div class="card-body text-center mb-3">
-                            <h6 class="card-title">Premium Carrom Board</h6>
-                            <p class="fw-bold text-success">₹2,499</p>
-                            <a href="{% url 'product_detail' 25 %}" class="btn btn-sm btn-primary">View Details</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Outdoor Product -->
-                <div class="col-md-4 col-sm-6">
-                    <div class="card h-100 shadow-sm">
-                        <img src="{% static 'main/category/game/bad.jpg' %}"
-                             class="card-img-top"
-                             style="height:280px; object-fit:cover;"
-                             alt="Badminton Racket">
-                        <div class="card-body text-center mb-3">
-                            <h6 class="card-title">Badminton Racket Set</h6>
-                            <p class="fw-bold text-success">₹1,799</p>
-                            <a href="{% url 'product_detail' 26 %}" class="btn btn-sm btn-primary">View Details</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Indoor Product -->
-                <div class="col-md-4 col-sm-6">
-                    <div class="card h-100 shadow-sm">
-                        <img src="{% static 'main/category/game/tt.avif' %}"
-                             class="card-img-top"
-                             style="height:280px; object-fit:cover;"
-                             alt="Table Tennis">
-                        <div class="card-body text-center mb-3">
-                            <h6 class="card-title">Table Tennis Set</h6>
-                            <p class="fw-bold text-success">₹1,499</p>
-                            <a href="{% url 'product_detail' 27 %}" class="btn btn-sm btn-primary">View Details</a>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-    </div> {% endcomment %}
     <div class="row g-4">
 
-    {% if products %}
+   {% if page_obj %}
+
         <div class="row g-4">
 
-                {% for product in products %}
-                <div class="col-md-4 col-sm-6">
-                    <div class="card h-100 shadow-sm">
+            {% for product in page_obj %}
+            <div class="col-md-4 col-sm-6">
+                <div class="card h-100 shadow-sm">
 
-                        <img src="{{ product.product_image.url }}"
-                            class="card-img-top"
-                            style="height:280px; object-fit:cover;"
-                            alt="{{ product.title }}">
+                    <img src="{{ product.product_image.url }}"
+                        class="card-img-top"
+                        style="height:280px; object-fit:cover;"
+                        alt="{{ product.title }}">
 
-                        <div class="card-body text-center mb-3">
-                            <h6 class="card-title">{{ product.title }}</h6>
+                    <div class="card-body text-center mb-3">
+                        <h6 class="card-title">{{ product.title }}</h6>
 
-                            <p class="fw-bold text-success">
-                                ₹{{ product.discounted_price }}
-                            </p>
+                        <p class="fw-bold text-success">
+                            ₹{{ product.discounted_price }}
+                        </p>
 
-                            <a href="{% url 'product_detail' product.id %}"
-                            class="btn btn-sm btn-primary">
+                        <a href="{% url 'product_detail' product.id %}"
+                        class="btn btn-sm btn-primary">
                             View Details
-                            </a>
-                        </div>
-
+                        </a>
                     </div>
-                </div>
-                {% endfor %}
 
-           
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+
+            <!-- PAGINATION -->
+            <nav class="mt-4">
+                <ul class="pagination justify-content-center">
+
+                    <!-- Prev -->
+                    <li class="page-item {% if not page_obj.has_previous %}disabled{% endif %}">
+                        <a class="page-link"
+                        href="{% if page_obj.has_previous %}?page={{ page_obj.previous_page_number }}{% else %}#{% endif %}">
+                            &laquo; Prev
+                        </a>
+                    </li>
+
+                    <!-- Pages -->
+                    {% for num in page_obj.paginator.page_range %}
+                        {% if page_obj.number == num %}
+                            <li class="page-item active">
+                                <span class="page-link">{{ num }}</span>
+                            </li>
+                        {% elif num > page_obj.number|add:'-2' and num < page_obj.number|add:'3' %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+
+                    <!-- Next -->
+                    <li class="page-item {% if not page_obj.has_next %}disabled{% endif %}">
+                        <a class="page-link"
+                        href="{% if page_obj.has_next %}?page={{ page_obj.next_page_number }}{% else %}#{% endif %}">
+                            Next &raquo;
+                        </a>
+                    </li>
+
+                </ul>
+            </nav>
+
         {% else %}
             <h4 class="text-center">No Gaming products available</h4>
         {% endif %}

@@ -7,147 +7,78 @@
 
 <div class="container my-5">
 
-    <!-- ================= PAGE HEADER ================= -->
+    <!-- HEADER -->
     <div class="text-center mb-4">
         <h2 class="fw-bold">Home Appliances</h2>
         <p class="text-muted">Upgrade your home with modern and efficient appliances</p>
     </div>
 
-    {% comment %} <div class="row">
-        <!-- ================= PRODUCT GRID ================= -->
-        <div>
-            <div class="row g-4">
-
-                <!-- Product Card -->
-                <div class="col-md-4 col-sm-6">
-                    <div class="card h-100 shadow-sm">
-                        <img src="{% static 'main/category/home/fridge.avif' %}"
-                             class="card-img-top"
-                             style="height:280px; object-fit:cover;"
-                             alt="Refrigerator">
-                        <div class="card-body text-center mb-3">
-                            <h6 class="card-title">Double Door Refrigerator</h6>
-                            <p class="fw-bold text-success">₹34,999</p>
-                            <a href="{% url 'product_detail' 10 %}" class="btn btn-sm btn-primary">View Details</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product Card -->
-                <div class="col-md-4 col-sm-6">
-                    <div class="card h-100 shadow-sm">
-                        <img src="{% static 'main/category/home/washmc.jpeg' %}"
-                             class="card-img-top"
-                             style="height:280px; object-fit:cover;"
-                             alt="Washing Machine">
-                        <div class="card-body text-center">
-                            <h6 class="card-title">Front Load Washing Machine</h6>
-                            <p class="fw-bold text-success">₹28,499</p>
-                            <a href="{% url 'product_detail' 11 %}" class="btn btn-sm btn-primary">View Details</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product Card -->
-                <div class="col-md-4 col-sm-6">
-                    <div class="card h-100 shadow-sm">
-                        <img src="{% static 'main/category/home/microwave.avif' %}"
-                             class="card-img-top"
-                             style="height:280px; object-fit:cover;"
-                             alt="Microwave Oven">
-                        <div class="card-body text-center">
-                            <h6 class="card-title">Microwave Oven</h6>
-                            <p class="fw-bold text-success">₹9,999</p>
-                            <a href="{% url 'product_detail' 12 %}" class="btn btn-sm btn-primary">View Details</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product Card -->
-                <div class="col-md-4 col-sm-6">
-                    <div class="card h-100 shadow-sm">
-                        <img src="{% static 'main/category/home/ac.png' %}"
-                             class="card-img-top"
-                             style="height:280px; object-fit:cover;"
-                             alt="Air Conditioner">
-                        <div class="card-body text-center mb-3">
-                            <h6 class="card-title">1.5 Ton Split AC</h6>
-                            <p class="fw-bold text-success">₹42,999</p>
-                            <a href="{% url 'product_detail' 13 %}" class="btn btn-sm btn-primary">View Details</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product Card -->
-                <div class="col-md-4 col-sm-6">
-                    <div class="card h-100 shadow-sm">
-                        <img src="{% static 'main/category/home/vacc.jpg' %}"
-                             class="card-img-top"
-                             style="height:280px; object-fit:cover;"
-                             alt="Vacuum Cleaner">
-                        <div class="card-body text-center mb-3">
-                            <h6 class="card-title">Electric Vacuum Cleaner</h6>
-                            <p class="fw-bold text-success">₹7,499</p>
-                            <a href="{% url 'product_detail' 14 %}" class="btn btn-sm btn-primary">View Details</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product Card -->
-                <div class="col-md-4 col-sm-6">
-                    <div class="card h-100 shadow-sm">
-                        <img src="{% static 'main/category/home/cooler.jpg' %}"
-                             class="card-img-top"
-                             style="height:280px; object-fit:cover;"
-                             alt="Air Cooler">
-                        <div class="card-body text-center mb-3">
-                            <h6 class="card-title">Air Cooler</h6>
-                            <p class="fw-bold text-success">₹60,999</p>
-                            <a href="{% url 'product_detail' 15 %}" class="btn btn-sm btn-primary">View Details</a>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-    </div> {% endcomment %}
+    <!-- PRODUCT GRID -->
     <div class="row g-4">
 
-    {% if products %}
-        <div class="row g-4">
+        {% for product in page_obj %}
+        <div class="col-md-4 col-sm-6">
+            <div class="card h-100 shadow-sm">
 
-            {% for product in products %}
-            <div class="col-md-4 col-sm-6">
-                <div class="card h-100 shadow-sm">
+                <img src="{{ product.product_image.url }}"
+                     class="card-img-top"
+                     style="height:280px; object-fit:cover;"
+                     alt="{{ product.title }}">
 
-                    <img src="{{ product.product_image.url }}"
-                        class="card-img-top"
-                        style="height:280px; object-fit:cover;"
-                        alt="{{ product.title }}">
+                <div class="card-body text-center mb-3">
+                    <h6 class="card-title">{{ product.title }}</h6>
 
-                    <div class="card-body text-center mb-3">
-                        <h6 class="card-title">{{ product.title }}</h6>
+                    <p class="fw-bold text-success">
+                        ₹{{ product.discounted_price }}
+                    </p>
 
-                        <p class="fw-bold text-success">
-                            ₹{{ product.discounted_price }}
-                        </p>
-
-                        <a href="{% url 'product_detail' product.id %}"
-                        class="btn btn-sm btn-primary">
+                    <a href="{% url 'product_detail' product.id %}"
+                       class="btn btn-sm btn-primary">
                         View Details
-                        </a>
-                    </div>
-
+                    </a>
                 </div>
+
             </div>
+        </div>
+        {% endfor %}
+
+    </div>
+
+    <!-- PAGINATION (OUTSIDE GRID) -->
+    <nav aria-label="Page navigation" class="mt-4">
+        <ul class="pagination justify-content-center">
+
+            <!-- Previous -->
+            <li class="page-item {% if not page_obj.has_previous %}disabled{% endif %}">
+                <a class="page-link"
+                   href="{% if page_obj.has_previous %}?page={{ page_obj.previous_page_number }}{% else %}#{% endif %}">
+                    &laquo; Prev
+                </a>
+            </li>
+
+            <!-- Page Numbers -->
+            {% for num in page_obj.paginator.page_range %}
+                {% if page_obj.number == num %}
+                    <li class="page-item active">
+                        <span class="page-link">{{ num }}</span>
+                    </li>
+                {% elif num > page_obj.number|add:'-2' and num < page_obj.number|add:'3' %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                    </li>
+                {% endif %}
             {% endfor %}
 
-        </div>
-        {% else %}
-            <h4 class="text-center">No Home Appliances available</h4>
-        {% endif %}
-    </div>
+            <!-- Next -->
+            <li class="page-item {% if not page_obj.has_next %}disabled{% endif %}">
+                <a class="page-link"
+                   href="{% if page_obj.has_next %}?page={{ page_obj.next_page_number }}{% else %}#{% endif %}">
+                    Next &raquo;
+                </a>
+            </li>
+
+        </ul>
+    </nav>
 
 </div>
 

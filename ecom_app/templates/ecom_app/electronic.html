@@ -13,141 +13,77 @@
         <p class="text-muted">Discover the latest gadgets and electronic devices</p>
     </div>
 
-    {% comment %} <div class="row">
-
-        <!-- ================= PRODUCT GRID ================= -->
-        <div>
-            <div class="row g-4">
-
-                <!-- Product Card -->
-                <div class="col-md-4 col-sm-6">
-                    <div class="card h-100 shadow-sm">
-                        <img src="{% static 'main/category/electronics/smartphone.webp' %}"
-                             class="card-img-top"
-                             style="height:280px; object-fit:cover; width:100%; "
-                             alt="Mobile">
-                        <div class="card-body text-center mb-3">
-                            <h6 class="card-title">Samsung Smartphone</h6>
-                            <p class="fw-bold text-success">₹24,999</p>
-                            <a href="{% url 'product_detail' 16 %}" class="btn btn-sm btn-primary">View Details</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product Card -->
-                <div class="col-md-4 col-sm-6">
-                    <div class="card h-100 shadow-sm">
-                        <img src="{% static 'main/category/electronics/laptop.jpg' %}"
-                             class="card-img-top"
-                             style="height:280px; object-fit:cover;  width:100%;"
-                             alt="Laptop">
-                        <div class="card-body text-center mb-3">
-                            <h6 class="card-title">Gaming Laptop</h6>
-                            <p class="fw-bold text-success">₹59,999</p>
-                            <a href="{% url 'product_detail' 17 %}" class="btn btn-sm btn-primary">View Details</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product Card -->
-                <div class="col-md-4 col-sm-6">
-                    <div class="card h-100 shadow-sm">
-                        <img src="{% static 'main/category/electronics/headphone.jpg' %}"
-                             class="card-img-top"
-                             style="height:280px; object-fit:cover; width:100%;"
-                             alt="Headphones">
-                        <div class="card-body text-center mb-3">
-                            <h6 class="card-title">Wireless Headphones</h6>
-                            <p class="fw-bold text-success">₹2,499</p>
-                            <a href="{% url 'product_detail' 18 %}" class="btn btn-sm btn-primary">View Details</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product Card -->
-                <div class="col-md-4 col-sm-6">
-                    <div class="card h-100 shadow-sm">
-                        <img src="{% static 'main/category/electronics/watch.avif' %}"
-                             class="card-img-top"
-                             style="height:280px; object-fit:cover;"
-                             alt="Smart Watch">
-                        <div class="card-body text-center mb-3">
-                            <h6 class="card-title">Smart Watch</h6>
-                            <p class="fw-bold text-success">₹1,999</p>
-                            <a href="{% url 'product_detail' 19 %}" class="btn btn-sm btn-primary">View Details</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product Card -->
-                <div class="col-md-4 col-sm-6">
-                    <div class="card h-100 shadow-sm">
-                        <img src="{% static 'main/category/electronics/speakers.webp' %}"
-                             class="card-img-top"
-                             style="height:280px; object-fit:cover;"
-                             alt="Bluetooth Speaker">
-                        <div class="card-body text-center mb-3">
-                            <h6 class="card-title">Bluetooth Speaker</h6>
-                            <p class="fw-bold text-success">₹1,499</p>
-                            <a href="{% url 'product_detail' 20 %}" class="btn btn-sm btn-primary">View Details</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product Card -->
-                <div class="col-md-4 col-sm-6">
-                    <div class="card h-100 shadow-sm">
-                        <img src="{% static 'main/category/electronics/tab.avif' %}"
-                             class="card-img-top"
-                             style="height:280px; object-fit:cover;"
-                             alt="Tablet">
-                        <div class="card-body text-center mb-3">
-                            <h6 class="card-title">Tablet Pro</h6>
-                            <p class="fw-bold text-success">₹18,999</p>
-                            <a href="{% url 'product_detail' 21 %}" class="btn btn-sm btn-primary">View Details</a>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-    </div> {% endcomment %}
+   
     <div class="row g-4">
 
-        {% if products %}
-            <div class="row g-4">
+    {% if page_obj %}
+        <div class="row g-4">
 
-                {% for product in products %}
-                <div class="col-md-4 col-sm-6">
-                    <div class="card h-100 shadow-sm">
+            {% for product in page_obj %}
+            <div class="col-md-4 col-sm-6">
+                <div class="card h-100 shadow-sm">
 
-                        <img src="{{ product.product_image.url }}"
-                            class="card-img-top"
-                            style="height:280px; object-fit:cover; width:100%;"
-                            alt="{{ product.title }}">
+                    <img src="{{ product.product_image.url }}"
+                        class="card-img-top"
+                        style="height:280px; object-fit:cover; width:100%;"
+                        alt="{{ product.title }}">
 
-                        <div class="card-body text-center mb-3">
-                            <h6 class="card-title">{{ product.title }}</h6>
+                    <div class="card-body text-center mb-3">
+                        <h6 class="card-title">{{ product.title }}</h6>
 
-                            <p class="fw-bold text-success">
-                                ₹{{ product.discounted_price }}
-                            </p>
+                        <p class="fw-bold text-success">
+                            ₹{{ product.discounted_price }}
+                        </p>
 
-                            <a href="{% url 'product_detail' product.id %}"
-                            class="btn btn-sm btn-primary">
-                            View Details
-                            </a>
-                        </div>
-
+                        <a href="{% url 'product_detail' product.id %}"
+                        class="btn btn-sm btn-primary">
+                        View Details
+                        </a>
                     </div>
+
                 </div>
+            </div>
+            {% endfor %}
+
+        </div>
+
+       <nav aria-label="Page navigation" class="mt-4">
+            <ul class="pagination justify-content-center">
+
+                <!-- Previous Button -->
+                <li class="page-item {% if not page_obj.has_previous %}disabled{% endif %}">
+                    <a class="page-link"
+                    href="{% if page_obj.has_previous %}?page={{ page_obj.previous_page_number }}{% else %}#{% endif %}">
+                        &laquo; Previous
+                    </a>
+                </li>
+
+                <!-- Page Numbers -->
+                {% for num in page_obj.paginator.page_range %}
+                    {% if page_obj.number == num %}
+                        <li class="page-item active">
+                            <span class="page-link">{{ num }}</span>
+                        </li>
+                    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                        </li>
+                    {% endif %}
                 {% endfor %}
 
-            </div>
-        {% else %}
-            <h4 class="text-center">No Electronics available</h4>
-        {% endif %}
+                <!-- Next Button -->
+                <li class="page-item {% if not page_obj.has_next %}disabled{% endif %}">
+                    <a class="page-link"
+                    href="{% if page_obj.has_next %}?page={{ page_obj.next_page_number }}{% else %}#{% endif %}">
+                        Next &raquo;
+                    </a>
+                </li>
+
+            </ul>
+        </nav>
+    {% else %}
+        <h4 class="text-center">No Electronics available</h4>
+    {% endif %}
     </div>
 
 </div>
