@@ -128,14 +128,14 @@ def profile(request):
     if request.method == "POST":
         form = CustomerProfileForm(request.POST, request.FILES, instance=profile)
 
-        print("POST HIT ✅")
+        print("POST HIT ")
 
         if form.is_valid():
             data = form.save(commit=False)
             data.user = request.user
             data.save()
 
-            print("DATA SAVED ✅")
+            print("DATA SAVED ")
 
             return redirect("profile2")   # ✔ correct
 
@@ -283,7 +283,7 @@ def payment_success(request):
                 quantity=item.quantity
             )
 
-        # 🧹 cart clear
+        #  cart clear
         cart_items.delete()
 
     return render(request, "ecom_app/order_success.html")
@@ -366,8 +366,6 @@ class CartViewSet(viewsets.ModelViewSet):
 class OrderPlacedViewSet(viewsets.ModelViewSet):
     queryset = OrderPlaced.objects.all()
     serializer_class = OrderPlacedSerializer
-
-
 
 
 class UserAdminViewSet(viewsets.ModelViewSet):
