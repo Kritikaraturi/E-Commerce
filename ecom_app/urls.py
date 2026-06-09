@@ -20,7 +20,7 @@ router.register(r'orders', OrderPlacedViewSet)
 from rest_framework.routers import DefaultRouter
 from .views import UserAdminViewSet, ProductAdminViewSet, CustomerAdminViewSet, OrderAdminViewSet
 
-router = DefaultRouter()
+router = DefaultRouter()    
 router.register('admin/users', UserAdminViewSet)
 router.register('admin/products', ProductAdminViewSet)
 router.register('admin/customers', CustomerAdminViewSet)

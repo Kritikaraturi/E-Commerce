@@ -387,3 +387,8 @@ class OrderAdminViewSet(viewsets.ModelViewSet):
     queryset = OrderPlaced.objects.all()
     serializer_class = OrderPlacedSerializer
     permission_classes = [AllowAny]
+
+# class CartAdminViewSet(viewsets.ModelViewSet):
+#     queryset = Cart.objects.all()
+#     serializer_class = CartSerializer
+#     permission_classes = [AllowAny]
