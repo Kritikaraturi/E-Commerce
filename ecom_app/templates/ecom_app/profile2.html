@@ -1,56 +1,265 @@
 {% extends "ecom_app/base.html" %}
+{% load static %}
 
 {% block title %}Profile{% endblock %}
 
 {% block content %}
 
-{% comment %} <div class="container mt-5" 
-     style="background: linear-gradient(to right, #f8fafb, #ffffff); padding: 30px; border-radius: 20px;">
+<style>
+  body {
+    background: #f1f5f9;
+  }
 
-    <div class="row justify-content-center">
-        <div class="col-md-6">
+  .profile-wrapper {
+    max-width: 520px;
+    margin: 50px auto;
+  }
 
-            <div class="card shadow-lg p-4 text-center"
-                 style="border-radius: 20px; transition: 0.3s;">
+  /* ── header — green instead of blue ── */
+  .profile-header {
+    background: linear-gradient(135deg, #153089, #5689f7);
+    border-radius: 16px 16px 0 0;
+    padding: 2rem;
+    text-align: center;
+    color: #fff;
+    position: relative;
+  }
 
-                <h2 class="mb-4" style="font-weight: 600;">My Profile</h2>
+  .avatar-circle {
+    width: 80px;
+    height: 80px;
+    background: rgba(255,255,255,0.2);
+    border: 3px solid rgba(255,255,255,0.5);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 0.8rem;
+    font-size: 2.2rem;
+  }
 
-                {% if profile %}
+  .profile-header h2 {
+    font-weight: 700;
+    margin-bottom: 0.2rem;
+    font-size: 1.2rem;
+  }
 
-                    <div style="background:#f1f3f6; padding:10px; border-radius:10px; margin-bottom:10px;">
-                        <b style="margin-right: 10px;">Name:</b> {{ profile.name }}
-                    </div>
+  .profile-header small {
+    opacity: 0.75;
+    font-size: 0.82rem;
+  }
 
-                    <div style="background:#f1f3f6; padding:10px; border-radius:10px; margin-bottom:10px;">
-                        <b style="margin-right: 10px;">City:</b> {{ profile.city }}
-                    </div>
+  /* verified badge */
+  .verified-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 100px;
+    padding: 3px 12px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    margin-top: 0.5rem;
+  }
 
-                    <div style="background:#f1f3f6; padding:10px; border-radius:10px; margin-bottom:10px;">
-                        <b style="margin-right: 10px;">Locality:</b> {{ profile.locality }}
-                    </div>
+  /* ── info card ── */
+  .profile-card {
+    background: #fff;
+    border-radius: 0 0 16px 16px;
+    padding: 2rem;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+  }
 
-                    <div style="background:#f1f3f6; padding:10px; border-radius:10px; margin-bottom:10px;">
-                        <b style="margin-right: 10px;">State:</b> {{ profile.state }}
-                    </div>
+  .section-title {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #94a3b8;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #f1f5f9;
+  }
 
-                {% else %}
-                    <p style="color:red;">No profile found!</p>
-                {% endif %}
+  /* ── left-border info rows (different from edit page inputs) ── */
+  .info-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 0.75rem 1rem;
+    margin-bottom: 0.65rem;
+    border-left: 3px solid #2563eb;
+    background: #eff6ff;
+    border-radius: 0 10px 10px 0;
+  }
 
-                <div class="mt-4">
-                    <a href="{% url 'profile' %}" 
-                       class="btn btn-primary"
-                       style="width: 180px; height: 45px; border-radius: 10px; display: inline-flex; align-items: center; justify-content: center;">
-                        Edit Profile
-                    </a>
-                </div>
+  .info-row i {
+    font-size: 1.05rem;
+    color: #056a96;
+    flex-shrink: 0;
+  }
 
-            </div>
+  .info-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #2563eb;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 1px;
+  }
 
+  .info-value {
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: #1e293b;
+  }
+
+  /* no profile */
+  .no-profile {
+    text-align: center;
+    padding: 1.5rem 0;
+    color: #ef4444;
+    font-size: 0.9rem;
+  }
+
+  /* ── buttons — green theme ── */
+  .btn-edit {
+    background: #fff;
+    border: 1.5px solid #2563eb;
+    color: #2563eb;
+    border-radius: 10px;
+    padding: 0.7rem 2rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: all 0.2s;
+    display: inline-block;
+  }
+
+  .btn-edit:hover {
+    background: #eff6ff;
+    color: #1d4ed8;
+  }
+
+  .btn-home {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    box-shadow: 0 4px 14px rgba(37,99,235,0.3);
+    border: none;
+    border-radius: 10px;
+    padding: 0.7rem 2rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.2s;
+    display: inline-block;
+  }
+
+  .btn-home:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(37,99,235,0.4);
+    color: #fff;
+  }
+</style>
+
+<div class="profile-wrapper">
+
+  <!-- Header -->
+  <div class="profile-header">
+    {% comment %} <div class="avatar-circle">
+      <i class="bi bi-person-fill"></i>
+    </div> {% endcomment %}
+    <h2>{{ profile.name|default:"My Profile" }}</h2>
+    <small>Your account information</small>
+    <br>
+    <span class="verified-badge">
+      <i class="bi bi-patch-check-fill"></i> Verified Account
+    </span>
+  </div>
+
+  <!-- Info card -->
+  <div class="profile-card">
+
+    {% if profile %}
+
+      <p class="section-title">Personal Details</p>
+
+      <div class="info-row">
+        <i class="bi bi-person-fill"></i>
+        <div>
+          <div class="info-label">Full Name</div>
+          <div class="info-value">{{ profile.name }}</div>
         </div>
-    </div>
-</div> {% endcomment %}
+      </div>
 
+      <div class="info-row">
+        <i class="bi bi-geo-alt-fill"></i>
+        <div>
+          <div class="info-label">Locality</div>
+          <div class="info-value">{{ profile.locality }}</div>
+        </div>
+      </div>
+
+      <p class="section-title mt-4">Location</p>
+
+      <div class="row g-2">
+        <div class="col-6">
+          <div class="info-row">
+            <i class="bi bi-building"></i>
+            <div>
+              <div class="info-label">City</div>
+              <div class="info-value">{{ profile.city }}</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="info-row">
+            <i class="bi bi-map-fill"></i>
+            <div>
+              <div class="info-label">State</div>
+              <div class="info-value">{{ profile.state }}</div>
+            </div>
+          </div>
+        </div>
+        <div class="info-row">
+          <i class="bi bi-person-badge-fill"></i>
+          <div>
+              <div class="info-label">User Type</div>
+              <div class="info-value">{{ profile.user_type|title }}</div>
+          </div>
+      </div>
+      </div>
+
+    {% else %}
+      <div class="no-profile">
+        <i class="bi bi-exclamation-circle" style="font-size:1.5rem; display:block; margin-bottom:0.5rem;"></i>
+        No profile found!
+      </div>
+    {% endif %}
+
+    <!-- Buttons -->
+    <div class="d-flex gap-3 justify-content-center mt-4">
+      <a href="{% url 'profile' %}" class="btn-edit">
+        <i class="bi bi-pencil me-1"></i> Edit
+      </a>
+      <a href="{% url 'home' %}" class="btn-home">
+        <i class="bi bi-house me-1"></i> Home
+      </a>
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}
+
+
+
+{% comment %} {% extends "ecom_app/base.html" %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-5">
@@ -111,4 +320,4 @@
     </div>
 </div>
 
-{% endblock %}
+{% endblock %} {% endcomment %}

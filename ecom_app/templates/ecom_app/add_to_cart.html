@@ -7,7 +7,7 @@
 
 <div class="container my-5">
     <div class="row justify-content-center">
-        <div class="col-md-8">  
+        <div class="col-lg-10 col-md-11"> 
             <h2 class="text-center mb-4">🛒 My Cart</h2>
             <div class="card p-4 shadow-lg rounded-4 mt-4 text-center">
                 {% if cart_items %}
@@ -19,16 +19,26 @@
 
                             <!-- Product Image -->
                             <div class="col-md-3 text-center">
-                                <img src="{{ item.product.product_image.url }}" 
-                                    class="img-fluid rounded"
-                                    style="height:120px; object-fit:cover;">
+                                <a href="{% url 'product_detail' item.product.id %}">
+                                    <img src="{{ item.product.product_image.url }}" 
+                                        class="img-fluid rounded"
+                                        style="height:120px; object-fit:cover;">
+                                </a>
                             </div>
 
                             <!-- Product Details -->
                             <div class="col-md-5">
-                                <h5 class="mb-1">{{ item.product.title }}</h5>
+                                <a href="{% url 'product_detail' item.product.id %}"
+                                    class="text-decoration-none text-dark"><h5 class="mb-1">{{ item.product.title }}</h5>
+                                </a>
                                 <p class="text-muted mb-1">Category: {{ item.product.category }}</p>
-                                <p class="fw-bold text-success">₹{{ item.product.discounted_price }}</p>
+                                <p class="text-muted mb-1">
+                                    ₹{{ item.product.discounted_price }} × {{ item.quantity }}
+                                </p>
+
+                                {% comment %} <p class="fw-bold text-success">
+                                    Total: ₹{{ item.total_amount }}
+                                </p> {% endcomment %}
                             </div>
 
                             <!-- Quantity -->

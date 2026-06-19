@@ -35,16 +35,53 @@ STATE_CHOICES = (
     ('Uttarakhand', 'Uttarakhand'),
     ('West Bengal', 'West Bengal'),
 )
+USER_TYPES = (
+        ('superadmin', 'Super Admin'),
+        ('admin', 'Admin'),
+        ('seller', 'Seller'),
+        ('customer', 'Customer'),
+    )
+
+# class Customer(AbstractUser):
+#     USER_TYPES = (
+#         ('customer', 'Customer'),
+#         ('seller', 'Seller'),
+#     )
+#     user_type = models.CharField(max_length=20, choices=USER_TYPES, default='customer')
+#     user = models.OneToOneField(User, on_delete=models.CASCADE)
+#     name = models.CharField(max_length=200)
+#     locality = models.CharField(max_length=200)
+#     city = models.CharField(max_length=50)
+#     state = models.CharField(choices=STATE_CHOICES, max_length=50)
+#     profile_completed = models.BooleanField(default=False)
+
+#     def __str__(self):
+#         return str(self.id)
+
+
+USER_TYPES = (
+    ('customer', 'Customer'),
+    ('seller', 'Seller'),
+    ('admin', 'Admin'),
+)
 
 class Customer(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+    user_type = models.CharField(
+        max_length=20,
+        choices=USER_TYPES,
+        default='customer'
+    )
+
     name = models.CharField(max_length=200)
     locality = models.CharField(max_length=200)
     city = models.CharField(max_length=50)
     state = models.CharField(choices=STATE_CHOICES, max_length=50)
+    profile_completed = models.BooleanField(default=False)
 
     def __str__(self):
-        return str(self.id)
+        return self.name
     
 CATEGORY_CHOICES = (
     ('Accessories', 'Accessories'),
@@ -91,3 +128,23 @@ class OrderPlaced(models.Model):
     quantity = models.PositiveIntegerField(default=1)
     ordered_date = models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=50, choices=STATUS_CHOICES, default='Pending')
+
+
+# from django.db import models
+
+# class UserProfile(models.Model):
+#     # General Settings
+#     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
+#     profile_picture = models.ImageField(upload_to='profiles/', blank=True, null=True)
+#     phone = models.CharField(max_length=20, blank=True)
+#     bio = models.TextField(blank=True)
+#     created_at = models.DateTimeField(auto_now_add=True)
+#     updated_at = models.DateTimeField(auto_now=True)
+#     user_type = models.CharField(
+#         max_length=20,
+#         choices=USER_TYPES,
+#         default='customer'
+#     )
+    
+#     def __str__(self):
+#         return f"{self.user.username}'s Profile"

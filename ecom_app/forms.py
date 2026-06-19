@@ -29,7 +29,7 @@ class PasswordChangeForm(PasswordChangeForm):
 class CustomerProfileForm(forms.ModelForm):
     class Meta:
         model = Customer
-        fields = ['name', 'locality', 'city', 'state']
+        fields = ['user_type', 'name', 'locality', 'city', 'state']
 
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control'}),
@@ -38,3 +38,69 @@ class CustomerProfileForm(forms.ModelForm):
             'state': forms.Select(attrs={'class': 'form-control'}),
         }
         
+
+
+
+
+
+from django import forms
+from django.contrib.auth.forms import AuthenticationForm
+
+class LoginForm(AuthenticationForm):
+
+    username = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                'class':'frost-input',
+                'placeholder':'Username'
+            }
+        )
+    )
+
+    password = forms.CharField(
+        widget=forms.PasswordInput(
+            attrs={
+                'class':'frost-input',
+                'placeholder':'Password'
+            }
+        )
+    )
+
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+from django import forms
+
+class CustomerRegistrationForm(UserCreationForm):
+
+    email = forms.EmailField()
+
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password1', 'password2']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.fields['username'].widget.attrs.update({
+            'class': 'frost-input',
+            'placeholder': 'Enter Username',
+            'id': 'username'
+        })
+
+        self.fields['email'].widget.attrs.update({
+            'class': 'frost-input',
+            'placeholder': 'Enter Email',
+            'id': 'email'
+        })
+
+        self.fields['password1'].widget.attrs.update({
+            'class': 'frost-input',
+            'placeholder': 'Enter Password',
+            'id': 'password'
+        })
+
+        self.fields['password2'].widget.attrs.update({
+            'class': 'frost-input',
+            'placeholder': 'Confirm Password',
+            'id': 'confirmPass'
+        })

@@ -3,109 +3,521 @@
 
 {% block title %}Home | MyShop{% endblock %}
 
+{% block extra_css %}
+    <style>
+
+        body{
+            background: linear-gradient(
+                to bottom,
+                #faf6f5,
+                #eff2f6,
+                #f1dede
+            );
+        }
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+         
+            padding: 15px;
+        }
+
+        .carousel-control-prev,
+        .carousel-control-next {
+            width: 5%;
+        }
+
+        .product-img {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .product-img:hover {
+            transform: scale(1.05);
+            cursor: pointer;
+        }
+
+        /* Product Card */
+
+        .product-card{
+            width:250px;
+            border:none;
+            border-radius:15px;
+            overflow:hidden;
+            transition:all 0.3s ease;
+        }
+
+        .product-card:hover{
+            transform:translateY(-10px);
+            box-shadow:0 12px 30px rgba(0,0,0,0.18) !important;
+        }
+
+        /* Product Image */
+
+        .product-img{
+            height:200px;
+            object-fit:cover;
+            transition:transform 0.3s ease;
+        }
+
+        .product-card:hover .product-img{
+            transform:scale(1.08);
+        }
+
+        /* Title */
+
+        .card-title{
+            color:#212529;
+        }
+
+        /* Horizontal Scroll */
+
+        .featured-scroll::-webkit-scrollbar{
+            height:8px;
+        }
+
+        .featured-scroll::-webkit-scrollbar-thumb{
+            background:#cfcfcf;
+            border-radius:10px;
+        }
+
+        .featured-scroll::-webkit-scrollbar-track{
+            background:#f5f5f5;
+        }
+
+        .category-card{
+            border: none;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .category-card:hover{
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15) !important;
+        }
+
+        .category-img{
+            transition: transform 0.3s ease;
+        }
+
+        .category-card:hover .category-img{
+            transform: scale(1.05);
+        }
+
+        .ecom-main{
+            max-width: 1700px;
+            margin:0 auto;
+            padding:2rem;
+        }
+
+            .ecom-section {
+            margin-bottom: 3.5rem;
+            padding: 2rem;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            }
+
+            .section-header {
+            margin-bottom: 1.2rem;
+            }
+
+            .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 0.2rem;
+            }
+
+            .section-sub {
+            font-size: 0.85rem;
+            color: #94a3b8;
+            margin-bottom: 0;
+            }
+
+            .why-section {
+            background: #f8fafc;
+            border-radius: 16px;
+            padding: 2.5rem 2rem;
+            margin-bottom: 2rem;
+            }
+
+            .why-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 1.5rem 1rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+            height: 100%;
+            transition: transform 0.2s;
+            }
+
+            .why-card:hover {
+            transform: translateY(-4px);
+            }
+
+            
+        .carousel-item img{
+            width: 100%;
+            height: 700px;   /* Increase/decrease as needed */
+            object-fit: cover;
+        }
+</style>
+    </style>
+{% endblock %}
+
+
+
+
 {% block content %}
 
+
+<div id="carouselExampleCaptions" class="carousel slide mt-1" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+        <img src="{% static 'main/image1.jpg' %}" class="d-block w-100" alt="..." style = "height: 530px; width: 100%; object-fit: cover;">
+        <div class="carousel-caption d-none d-md-block">
+            <h5>Welcome to MyShop</h5>
+            <p>Your one-stop destination for the best products at the best prices.</p>
+        </div>
+        </div>
+        <div class="carousel-item">
+        <img src="{% static 'main/image2.jpeg' %}" class="d-block w-100" alt="..."  style = "height: 530px; width: 100%; object-fit: cover;">
+        <div class="carousel-caption d-none d-md-block">
+            <h5>Fast & Safe Delivery</h5>
+            <p>Our trusted delivery partners handle every package with care to prevent any damage during transit.</p>
+        </div>
+        </div>
+        <div class="carousel-item">
+        <img src="{% static 'main/image3.webp' %}" class="d-block w-100" alt="..." style = "height: 530px; width: 100%; object-fit: cover;">
+        <div class="carousel-caption d-none d-md-block">
+            <h5>Secure Payments</h5>
+            <p>Shop with confidence knowing that your payments are processed safely and securely every time.</p>
+        </div>
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+
+<div class="container my-5">
+    <div class="ecom-main">
+
+    <!-- ================= FEATURED PRODUCTS ================= -->
+    <section class="ecom-section">
+        <div class="section-header">
+        <h2 class="section-title">Featured Products</h2>
+        <p class="section-sub">Handpicked deals just for you</p>
+        </div>
+
+        <div class="d-flex overflow-auto gap-4 pb-3 mt-4 featured-scroll">
+        {% for product in featured_products %}
+        <a href="{% url 'product_detail' product.id %}" class="text-decoration-none text-dark">
+            <div class="card product-card shadow-sm flex-shrink-0">
+            <img src="{{ product.product_image.url }}" class="card-img-top product-img" alt="{{ product.title }}">
+            <div class="card-body text-center">
+                <h6 class="card-title fw-semibold mb-0">{{ product.title }}</h6>
+                <p class="text-success fw-bold mb-0">₹{{ product.discounted_price }}</p>
+                <small class="text-muted text-decoration-line-through">₹{{ product.selling_price }}</small>
+            </div>
+            </div>
+        </a>
+        {% endfor %}
+        </div>
+    </section>
+
+    <!-- ================= CATEGORIES SECTION ================= -->
+    <section class="ecom-section">
+        <div class="section-header">
+        <h2 class="section-title">Featured Categories</h2>
+        <p class="section-sub">Shop by your favourite category</p>
+        </div>
+
+        {% for category, products in category_products.items %}
+        {% if products %}
+        <div class="mb-5">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h3 class="h5 fw-bold mb-0">{{ category }}</h3>
+            {% if category == 'Electronics' %}
+            <a href="{% url 'electronic' %}" class="btn btn-outline-primary btn-sm rounded-pill">View All →</a>
+            {% elif category == 'Home Appliances' %}
+            <a href="{% url 'appliance' %}" class="btn btn-outline-primary btn-sm rounded-pill">View All →</a>
+            {% elif category == 'Fashion' %}
+            <a href="{% url 'fashion' %}" class="btn btn-outline-primary btn-sm rounded-pill">View All →</a>
+            {% endif %}
+        </div>
+
+        <div class="d-flex overflow-auto gap-3 pb-3">
+            {% for product in products %}
+            <a href="{% url 'product_detail' product.id %}" class="text-decoration-none text-dark">
+            <div class="card category-card shadow-sm flex-shrink-0" style="width:250px;">
+                <img src="{{ product.product_image.url }}" class="card-img-top category-img" alt="{{ product.title }}" style="height:220px; object-fit:cover;">
+                <div class="card-body text-center">
+                <h6 class="card-title">{{ product.title }}</h6>
+                <p class="fw-bold text-success mb-1">₹{{ product.discounted_price }}</p>
+                <small class="text-muted text-decoration-line-through">₹{{ product.selling_price }}</small>
+                </div>
+            </div>
+            </a>
+            {% endfor %}
+        </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </section>
+
+    <!-- ================= WHY CHOOSE US ================= -->
+    <section class="why-section">
+        <div class="section-header">
+        <h2 class="section-title">Why Choose Us?</h2>
+        <p class="section-sub">We make your shopping experience better</p>
+        </div>
+
+        <div class="row g-4 text-center">
+        <div class="col-md-3 col-sm-6">
+            <div class="why-card">
+            <img src="{% static 'main/shipping.png' %}" alt="Free Shipping" style="width:200px; height:160px; object-fit:contain;">
+            <h5 class="fw-bold mt-3">Free Shipping</h5>
+            <p class="text-muted">Free delivery on orders above ₹999</p>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <div class="why-card">
+            <img src="{% static 'main/payment.jpg' %}" alt="Secure Payment" style="width:200px; height:160px; object-fit:contain;">
+            <h5 class="fw-bold mt-3">Secure Payment</h5>
+            <p class="text-muted">100% secure payment gateway</p>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <div class="why-card">
+            <img src="{% static 'main/support.avif' %}" alt="24/7 Support" style="width:200px; height:160px; object-fit:contain;">
+            <h5 class="fw-bold mt-3">24/7 Support</h5>
+            <p class="text-muted">Dedicated customer support team</p>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <div class="why-card">
+            <img src="{% static 'main/returns.webp' %}" alt="Easy Returns" style="width:200px; height:160px; object-fit:contain;">
+            <h5 class="fw-bold mt-3">Easy Returns</h5>
+            <p class="text-muted">30 days easy return policy</p>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    </div>
+</div>
+
+{% comment %} 
 <!-- ================= HERO SECTION ================= -->
 
 
+<!-- ================= FEATURED PRODUCTS ================= -->
 
+<section class="mb-5">
 
+    <div class="mt-3">
+
+        <h2 class="text-center fw-bold">
+            Featured Products
+        </h2>
+
+        <div class="d-flex overflow-auto gap-4 pb-3 mt-5 featured-scroll">
+
+            {% for product in featured_products %}
+
+            <a href="{% url 'product_detail' product.id %}"
+               class="text-decoration-none text-dark">
+
+                <div class="card product-card shadow-sm flex-shrink-0">
+
+                    <img src="{{ product.product_image.url }}"
+                         class="card-img-top product-img"
+                         alt="{{ product.title }}">
+
+                    <div class="card-body text-center">
+
+                        <h6 class="card-title fw-semibold mb-0">
+                            {{ product.title }}
+                        </h6>
+
+                        <p class="text-success fw-bold mb-0">
+                            ₹{{ product.discounted_price }}
+                        </p>
+
+                        <small class="text-muted text-decoration-line-through">
+                            ₹{{ product.selling_price }}
+                        </small>
+                    </div>
+
+                </div>
+
+            </a>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
 <!-- ================= CATEGORIES SECTION ================= -->
 <section class="my-5">
-    <h2 class="mb-4 text-center fw-bold" >Featured Categories</h2>
-    <div class="row g-4">
 
-        <div class="col-md-4">
-            <div class="card shadow-sm">
-                <img src="{% static 'main/category/image1.jpg' %}" class="card-img-top" alt="Electronics" style = "height: 250px; width: 100%;  object-fit: cover;">
-                <div class="card-body text-center">
-                    <h5 class="card-title">Home Appliances</h5>
-                    <a href="{% url 'appliance' %}" class="btn btn-outline-primary">View Products</a>
-                </div>
-            </div>
+    <h2 class="mb-4 text-center fw-bold">
+        Featured Categories
+    </h2>
+
+    {% for category, products in category_products.items %}
+    {% if products %}
+
+    <div class="mb-5">
+
+        <div class="d-flex justify-content-between align-items-center mb-3">
+
+            <h3 class="h4 fw-semibold">
+                {{ category }}
+            </h3>
+
+            {% if category == 'Electronics' %}
+                <a href="{% url 'electronic' %}"
+                   class="btn btn-outline-primary btn-sm">
+                    View All
+                </a>
+
+            {% elif category == 'Home Appliances' %}
+                <a href="{% url 'appliance' %}"
+                   class="btn btn-outline-primary btn-sm">
+                    View All
+                </a>
+
+            {% elif category == 'Fashion' %}
+                <a href="{% url 'fashion' %}"
+                   class="btn btn-outline-primary btn-sm">
+                    View All
+                </a>
+            {% endif %}
+
         </div>
 
-        <div class="col-md-4">
-            <div class="card shadow-sm">
-                <img src="{% static 'main/category/image2.jpg' %}" class="card-img-top" alt="Fashion" style = "height: 250px; width: 100%;  object-fit: cover;">
-                <div class="card-body text-center">
-                    <h5 class="card-title">Fashion</h5>
-                    <a href="{% url 'fashion' %}" class="btn btn-outline-primary">View Products</a>
+        <div class="d-flex overflow-auto gap-3 pb-3">
+
+            {% for product in products %}
+
+            <a href="{% url 'product_detail' product.id %}"
+               class="text-decoration-none text-dark">
+
+                <div class="card category-card shadow-sm flex-shrink-0"
+                     style="width:250px;">
+
+                    <img src="{{ product.product_image.url }}"
+                         class="card-img-top category-img"
+                         alt="{{ product.title }}"
+                         style="height:220px; object-fit:cover;">
+
+                    <div class="card-body text-center">
+
+                        <h6 class="card-title">
+                            {{ product.title }}
+                        </h6>
+
+                        <p class="fw-bold text-success mb-1">
+                            ₹{{ product.discounted_price }}
+                        </p>
+
+                        <small class="text-muted text-decoration-line-through">
+                            ₹{{ product.selling_price }}
+                        </small>
+
+                    </div>
+
                 </div>
-            </div>
-        </div>
 
-        <div class="col-md-4">
-            <div class="card shadow-sm">
-                <img src="{% static 'main/category/image3.png' %}" class="card-img-top" alt="Home Appliances" style = "height: 250px; width: 100%;  object-fit: cover;">
-                <div class="card-body text-center">
-                    <h5 class="card-title">Electronics</h5>
-                    <a href="{% url 'electronic' %}" class="btn btn-outline-primary">View Products</a>
-                </div>
-            </div>
-        </div>
+            </a>
 
-    </div>
-</section>
+            {% endfor %}
 
-
-<!-- ================= FEATURED PRODUCTS ================= -->
-<section class="mb-5">
-    <h2 class="mb-4 text-center fw-bold">Featured Products</h2>
-    <div class="row g-4">
-
-        <div class="col-md-3">
-            <div class="card h-100 shadow-sm">
-                <img src="{% static 'main/products/nikon.webp' %}" class="card-img-top" alt="Product" style = "height: 260px;  object-fit: cover;">
-                <div class="card-body text-center">
-                    <h6 class="card-title">Digital Single-Lens Reflex Camera</h6>
-                    <p class="fw-bold text-success">₹2,499</p>
-                    <a href="{% url 'product_detail' 1 %}" class="btn btn-sm btn-primary">Explore</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-3">
-            <div class="card h-100 shadow-sm">
-                <img src="{% static 'main/products/watch.jpg' %}" class="card-img-top" alt="Product" style = "height: 260px;  object-fit: cover;">
-                <div class="card-body text-center">
-                    <h6 class="card-title">Smart Watch</h6>
-                    <p class="fw-bold text-success">₹1,999</p>
-                    <a href="{% url 'product_detail' 2 %}" class="btn btn-sm btn-primary">Explore</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-3">
-            <div class="card h-100 shadow-sm">
-                <img src="{% static 'main/products/jacket.jpg' %}" class="card-img-top" alt="Product" style = "height: 260px;  object-fit: cover;">
-                <div class="card-body text-center">
-                    <h6 class="card-title">Men's Jacket</h6>
-                    <p class="fw-bold text-success">₹2,999</p>
-                    <a href="{% url 'product_detail' 3 %}" class="btn btn-sm btn-primary">Explore</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-3">
-            <div class="card h-100 shadow-sm">
-                <img src="{% static 'main/products/bluetooth.webp' %}" class="card-img-top" alt="Product" style = "height: 260px;  object-fit: cover;">
-                <div class="card-body text-center">
-                    <h6 class="card-title">Bluetooth Earphones</h6>
-                    <p class="fw-bold text-success">₹1,499</p>
-                    <a href="{% url 'product_detail' 4 %}" class="btn btn-sm btn-primary">Explore</a>
-                </div>
-            </div>
         </div>
 
     </div>
+
+    {% endif %}
+    {% endfor %}
+
 </section>
 
 
-<!-- ================= PROMOTION SECTION ================= -->
-<section class="bg-light text-dark p-5 rounded text-center fw-bold">
-    <h2>Big Sale – Up to 50% Off!</h2>
-    <p>Limited time offer on selected products</p>
-    <a href="{% url 'products' %}" class="btn btn-secondary">Explore Now</a>
-</section>
+<!-- ================= WHY CHOOSE US SECTION ================= -->
+<section class="my-5 py-4 bg-light">
+    <div class="container">
+        <h2 class="mb-4 mt-3 text-center fw-bold">Why Choose Us?</h2>
+        
+        <div class="row g-4 text-center">
+            
+            <!-- Feature 1: Free Shipping -->
+            <div class="col-md-3 col-sm-6">
+                <div class="feature-card p-3">
+                    <div class="feature-icon mb-3">
+                        <img src="{% static 'main/shipping.png' %}" 
+                             alt="Free Shipping" 
+                             style="width: 200px; height: 160px; object-fit: contain;">
+                    </div>
+                    <h5 class="fw-bold">Free Shipping</h5>
+                    <p class="text-muted">Free delivery on orders above ₹999</p>
+                </div>
+            </div>
+            
+            <!-- Feature 2: Secure Payment -->
+            <div class="col-md-3 col-sm-6">
+                <div class="feature-card p-3">
+                    <div class="feature-icon mb-3">
+                        <img src="{% static 'main/payment.jpg' %}" 
+                             alt="Secure Payment" 
+                             style="width: 200px; height: 160px; object-fit: contain;">
+                    </div>
+                    <h5 class="fw-bold">Secure Payment</h5>
+                    <p class="text-muted">100% secure payment gateway</p>
+                </div>
+            </div>
+            
+            <!-- Feature 3: 24/7 Support -->
+            <div class="col-md-3 col-sm-6">
+                <div class="feature-card p-3">
+                    <div class="feature-icon mb-3">
+                        <img src="{% static 'main/support.avif' %}" 
+                             alt="24/7 Support" 
+                             style="width: 200px; height: 160px; object-fit: contain;">
+                    </div>
+                    <h5 class="fw-bold">24/7 Support</h5>
+                    <p class="text-muted">Dedicated customer support team</p>
+                </div>
+            </div>
+            
+            <!-- Feature 4: Easy Returns -->
+            <div class="col-md-3 col-sm-6">
+                <div class="feature-card p-3">
+                    <div class="feature-icon mb-3">
+                        <img src="{% static 'main/returns.webp' %}" 
+                             alt="Easy Returns" 
+                             style="width: 200px; height: 160px; object-fit: contain;">
+                    </div>
+                    <h5 class="fw-bold">Easy Returns</h5>
+                    <p class="text-muted">30 days easy return policy</p>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</section> {% endcomment %}
+
+
 {% endblock %}

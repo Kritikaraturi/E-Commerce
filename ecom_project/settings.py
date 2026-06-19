@@ -25,12 +25,12 @@ SECRET_KEY = 'django-insecure-^(vhs8)y(9w+j2s6#@xjj!&nuwnyp5v*jg!krnb8n@me&h#jf7
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['kritikaraturi.pythonanywhere.com']
+# ALLOWED_HOSTS = ['kritikaraturi.pythonanywhere.com']
 
 # For local development
 # DEBUG = True
 
-# ALLOWED_HOSTS = []    
+ALLOWED_HOSTS = []    
 
 STATIC_URL = '/static/'
 STATIC_ROOT = '/home/kritikaraturi/E-Commerce/staticfiles'
@@ -115,9 +115,14 @@ AUTH_PASSWORD_VALIDATORS = [
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
-
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'profile'
 LOGOUT_REDIRECT_URL = 'login'
@@ -156,3 +161,16 @@ RAZORPAY_KEY_SECRET = "wdzg42NM1GYfsVw8uD8fWsS4"
 
 # RAZORPAY_KEY_ID = config('RAZORPAY_KEY_ID')
 # RAZORPAY_KEY_SECRET = config('RAZORPAY_KEY_SECRET')
+
+
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'kritikaraturi2020@gmail.com'
+EMAIL_HOST_PASSWORD = 'gtlj ajte ypgc xipw'
+
+

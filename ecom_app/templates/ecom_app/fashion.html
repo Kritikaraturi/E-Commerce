@@ -3,6 +3,198 @@
 
 {% block title %}Fashion | MyShop{% endblock %}
 
+{% block extra_css %}
+<style>
+
+body{
+    background: linear-gradient(
+        to bottom,
+        #faf6f5,
+        #eff2f6,
+        #f1dede
+    );
+}
+
+.product-wrapper{
+    background:#fff;
+    border-radius:18px;
+    padding:30px;
+    box-shadow:0 3px 20px rgba(0,0,0,.08);
+}
+
+.product-card{
+    border:1px solid #e9ecef;
+    border-radius:12px;
+    overflow:hidden;
+    transition:.3s ease;
+    background:#fff;
+}
+
+.product-card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 10px 25px rgba(0,0,0,.12);
+}
+
+.product-card img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+}
+
+.product-card .card-body{
+    padding:15px;
+}
+
+.product-card .card-title{
+    font-size:14px;
+    font-weight:600;
+    min-height:40px;
+}
+
+.sale-price{
+    color:#198754;
+    font-size:18px;
+    font-weight:700;
+}
+
+.original-price{
+    color:#6c757d;
+    text-decoration:line-through;
+    font-size:13px;
+    margin-left:5px;
+}
+
+.product-card .btn{
+    border-radius:20px;
+    padding:6px 16px;
+}
+
+</style>
+{% endblock %}
+
+{% block content %}
+
+<div class="container px-5 my-5">
+
+    <!-- Header -->
+    <div class="text-center mb-4">
+        <h2 class="fw-bold">👕 Fashion Collection</h2>
+        <p class="text-muted">
+            Discover trendy styles for men, women & kids
+        </p>
+    </div>
+
+    <!-- Main White Container -->
+    <div class="product-wrapper">
+
+        {% if page_obj %}
+
+        <div class="row g-4">
+
+            {% for product in page_obj %}
+
+            <!-- 4 Products Per Row -->
+            <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
+
+                <div class="card h-100 product-card">
+
+                    <img src="{{ product.product_image.url }}"
+                         class="card-img-top"
+                         alt="{{ product.title }}">
+
+                    <div class="card-body text-center">
+
+                        <h6 class="card-title">
+                            {{ product.title }}
+                        </h6>
+
+                        <div class="mb-3">
+
+                            <span class="sale-price">
+                                ₹{{ product.discounted_price }}
+                            </span>
+
+                            <span class="original-price">
+                                ₹{{ product.selling_price }}
+                            </span>
+
+                        </div>
+
+                        <a href="{% url 'product_detail' product.id %}"
+                           class="btn btn-primary btn-sm">
+                            View Details
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+        <!-- Pagination -->
+        <nav class="mt-5">
+            <ul class="pagination justify-content-center">
+
+                <li class="page-item {% if not page_obj.has_previous %}disabled{% endif %}">
+                    <a class="page-link"
+                       href="{% if page_obj.has_previous %}?page={{ page_obj.previous_page_number }}{% else %}#{% endif %}">
+                        &laquo; Prev
+                    </a>
+                </li>
+
+                {% for num in page_obj.paginator.page_range %}
+
+                    {% if page_obj.number == num %}
+                        <li class="page-item active">
+                            <span class="page-link">{{ num }}</span>
+                        </li>
+
+                    {% elif num > page_obj.number|add:'-2' and num < page_obj.number|add:'3' %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ num }}">
+                                {{ num }}
+                            </a>
+                        </li>
+
+                    {% endif %}
+
+                {% endfor %}
+
+                <li class="page-item {% if not page_obj.has_next %}disabled{% endif %}">
+                    <a class="page-link"
+                       href="{% if page_obj.has_next %}?page={{ page_obj.next_page_number }}{% else %}#{% endif %}">
+                        Next &raquo;
+                    </a>
+                </li>
+
+            </ul>
+        </nav>
+
+        {% else %}
+
+        <div class="text-center py-5">
+            <h4>No Fashion Products Available</h4>
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+
+
+{% comment %} {% extends "ecom_app/base.html" %}
+{% load static %}
+
+{% block title %}Fashion | MyShop{% endblock %}
+
 {% block content %}
 
 <div class="container my-5">
@@ -82,4 +274,4 @@
 
 </div>
 
-{% endblock %}
+{% endblock %} {% endcomment %}

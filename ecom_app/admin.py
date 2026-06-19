@@ -5,10 +5,13 @@ from ecom_app.models import Product, Cart, Customer, OrderPlaced
 @admin.register(Customer)
 class CustomerModelAdmin(admin.ModelAdmin):
     list_display = ['id', 'user', 'name', 'locality', 'city', 'state']
+    
 
 @admin.register(Product)
 class ProductModelAdmin(admin.ModelAdmin):
     list_display = ['id', 'title', 'selling_price', 'discounted_price', 'description', 'brand', 'category', 'product_image']
+    search_fields = ["title"]
+    filter =["brand","category"]
 
 @admin.register(Cart)
 class CartModelAdmin(admin.ModelAdmin):
@@ -17,5 +20,6 @@ class CartModelAdmin(admin.ModelAdmin):
 @admin.register(OrderPlaced)
 class OrderPlacedModelAdmin(admin.ModelAdmin):
     list_display = ['id', 'user', 'customer', 'product', 'quantity', 'ordered_date', 'status']
+    
     
 
