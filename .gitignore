@@ -36,5 +36,3 @@ db.sqlite3
 # Ignore virtual environments
 venv/
 myenv/
-
-ecom_project/settings.py
